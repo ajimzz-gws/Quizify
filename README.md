@@ -55,6 +55,7 @@ Note: This section will be updated once deployment and environment setup are fin
 
 To run the project locally:
 Clone the repository:
+
 ```console
 git clone https://github.com/ajimzz-gws/quizify.git
 ```
@@ -65,14 +66,10 @@ cd client && npm install
 cd ../server && npm install
 ```
 Set up environment variables:
-
 Create a .env file in the /server directory using .env.example as a reference.
 
 Start the development servers:
 
-bash
-Copy
-Edit
 ```console
 npm run dev    # Concurrently runs frontend and backend
 ```
