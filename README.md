@@ -41,7 +41,7 @@ Quizify is an easy-to-use online quiz and test platform designed for both educat
 
 ## 📁 Project Structure
 
-```bash
+```console
 Quizify/
 ├── client/             # React frontend
 ├── server/             # Node + Express backend
@@ -49,35 +49,45 @@ Quizify/
 ├── .env.example        # Sample environment variables
 ├── README.md
 └── ...
-
+```
 ## 🧩 Getting Started
-
-> **Note:** This section will be updated once deployment and environment setup are finalized.
+Note: This section will be updated once deployment and environment setup are finalized.
 
 To run the project locally:
+Clone the repository:
+```console
+git clone https://github.com/ajimzz-gws/quizify.git
+```
+Navigate to the client and server directories and install dependencies:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/quizify.git
-
-2. Navigate to the client and server directories and install dependencies:
-
+```console
 cd client && npm install
 cd ../server && npm install
-
+```
 Set up environment variables:
 
 Create a .env file in the /server directory using .env.example as a reference.
 
 Start the development servers:
 
+bash
+Copy
+Edit
+```console
 npm run dev    # Concurrently runs frontend and backend
-
-##👥 Contribution
+```
+## 👥 Contribution
 This project is currently not open to public contributions. Only group members assigned to this student project may contribute.
 
-##🔒 License
+## 🔒 License
 Private student project for educational use only.
 
-##🌐 Live Demo
+## 🌐 Live Demo
 Coming soon – Deployment in progress.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
