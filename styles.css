@@ -1,0 +1,42 @@
+#header {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    justify-content: space-between; /* Logo on the left, navbar on the right */
+    padding: 10px 20px;
+    background-color: lightblue;
+}
+
+.logo {
+    width: 100px;  /* adjust as needed */
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Navbar styling */
+#nav-bar {
+    display: flex;
+    gap: 20px; 
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/*button*/
+button {
+    background-color: #2875b8; /* Green color */
+    color: white; /* Text color */
+    padding: 12px 24px; /* Adds space inside button */
+    font-size: 16px; /* Makes text more readable */
+    margin: 10px 0; /* Adds space between buttons */
+    border: none; /* Removes default border */
+    border-radius: 8px; /* Smooth edges */
+    cursor: pointer; /* Makes it clickable */
+    display: block; /* Places each button on a new line */
+}
