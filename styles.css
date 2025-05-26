@@ -1,42 +1,76 @@
-#header {
+body{
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+header {
     display: flex;
-    align-items: center; /* Aligns items vertically */
-    justify-content: space-between; /* Logo on the left, navbar on the right */
+    align-items: center; 
+    justify-content: space-between; 
     padding: 10px 20px;
-    background-color: lightblue;
+    background-color: #b3e5fc;
 }
-
 .logo {
-    width: 100px;  /* adjust as needed */
-    height: auto;
-    display: block;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-/* Navbar styling */
-#nav-bar {
     display: flex;
-    gap: 20px; 
+    align-items: center;
 }
 
-.nav-link {
+.logo img{
+    width: 30px;  
+    height: auto;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+nav ul li{
+    margin-left: 20px;
+}
+nav ul li a{
     text-decoration: none;
-    color: #333;
+    color: #0288d1;
     font-size: 18px;
-    font-weight: bold;
 }
 
-/*button*/
-button {
-    background-color: #2875b8; /* Green color */
-    color: white; /* Text color */
-    padding: 12px 24px; /* Adds space inside button */
-    font-size: 16px; /* Makes text more readable */
-    margin: 10px 0; /* Adds space between buttons */
-    border: none; /* Removes default border */
-    border-radius: 8px; /* Smooth edges */
-    cursor: pointer; /* Makes it clickable */
-    display: block; /* Places each button on a new line */
+main{
+    text-align: center;
+    padding: 50px 20px;
+}
+main h1{
+    font-size: 36px;
+    color: #0288d1;
+}
+
+.buttons{
+    margin-top: 20px;
+}
+.buttons button {
+    background-color: #0288d1; 
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px; 
+    margin: 10px;
+    border: none; 
+    cursor: pointer; 
+    font-size: pointer;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #b3e5fc;
+}
+.social-icons a {
+    margin: 0 10px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
 }
