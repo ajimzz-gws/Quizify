@@ -14,7 +14,12 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: #b3e5fc;
-    padding: 10px 20px;
+    padding: 15px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 /*logo*/
@@ -63,6 +68,7 @@ main {
 #home h1 {
     font-size: 36px;
     color: #0288d1;
+    margin-top: 100px;
 }
 
 .buttons {
