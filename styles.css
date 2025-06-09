@@ -4,6 +4,8 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+/* ========== Header ========== */
 body {
     background-color: #e0f7fa;
     line-height: 1.6;
@@ -22,22 +24,22 @@ header {
     z-index: 1000;
 }
 
-/*logo*/
+/* Logo */
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .logo img {
-    width: 40px;
-    height: 40px;
+  width: 40px;
+  height: 40px;
 }
 .logo span {
-    font-size: 24px;
-    color: #0288d1;
-    margin-left: 10px;
+  font-size: 24px;
+  color: #0288d1;
+  margin-left: 10px;
 }
 
-/*navbar*/
+/* Navbar */
 #navbar ul {
     list-style: none;
     display: flex;
@@ -56,23 +58,36 @@ header {
     font-size: 18px;
     transition: color 0.3s;
 }
+
 #navbar ul li a:hover {
   color: #0288d1;
 }
 
+
+/* ========== Main Content ========== */
+
 /*main content*/
+
 main {
-    text-align: center;
-    padding: 50px 20px;
+  text-align: center;
+  padding: 50px 20px;
 }
+
+
+/* Hero Section (Home) */
+#home h1 {
+  font-size: 36px;
+  color: #0288d1;
+
 #home h1 {
     font-size: 36px;
     color: #0288d1;
     margin-top: 100px;
+
 }
 
 .buttons {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .buttons button {
@@ -85,16 +100,22 @@ main {
     cursor: pointer;
     border-radius: 5px;
 }
+
 .buttons button:hover {
   background-color: #0277bd;
 }
 
-/*Section (About, Features, Target, FAQ) */
-section{
-    padding: 60px 20px;
-    max-width: 1000px;
-    margin: auto;
+
+/* ========== Section Styles (About, Features, Target, FAQ) ========== */
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
 }
+
+/* Features & Target Grid Layout */
+
+/*Section (About, Features, Target, FAQ) */
 .features, .target {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -110,6 +131,7 @@ section{
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
+
 .card h3 {
   color: #0288d1;
   margin-bottom: 10px;
@@ -119,10 +141,12 @@ section{
 .faq {
   background-color: #e0f7fa;
 }
+
 .faq .card p {
   margin: 10px 0;
 }
 
+/* ========== Footer ========== */
 footer {
     display: flex;
     flex-direction: column;
@@ -133,17 +157,22 @@ footer {
 }
 .social-icons {
     margin-bottom: 10px;
+
 }
 .social-icons a {
     margin: 0 10px;
     display: inline-block;
+
 }
 .social-icons img {
+/* ========== Responsive Design ========== */
+
     width: 30px;
     height: 30px;
 }
 
 /*Responsive Design */
+
 @media (max-width: 600px) {
   header {
     flex-direction: column;
@@ -163,29 +192,35 @@ footer {
 
 /* Home Section */
 #home {
-  background-color: #e0f7fa;
+
+  background-color: #e0f7fa; /* Light cyan */
   padding: 80px 20px;
+
 }
 
 /* About Section */
 #about {
-  background-color: #fff3e0; 
+
+  background-color: #fff3e0; /* Light orange */
   padding: 80px 20px;
 }
 
 /* Features Section */
 #features {
-  background-color: #e8f5e9; 
+  background-color: #e8f5e9; /* Light green */
 }
 
 /* Target Section */
 #target {
-  background-color: #ede7f6; 
+
+  background-color: #ede7f6; /* Light purple */
 }
 
 /* FAQ Section */
 #faq {
-  background-color: #fce4ec; 
+
+  background-color: #fce4ec; /* Light pink */
+
 }
 
 /* Contact Section */
