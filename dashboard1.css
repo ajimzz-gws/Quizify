@@ -74,8 +74,8 @@ header {
   gap: 10px;
 }
 .logo img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: auto;
   object-fit: contain;
 }
 .logo span {
@@ -107,15 +107,15 @@ header {
 }
 
 .total, .attempts, .avg {
-  background: white;
-  border: 1px solid #095076;
   padding: 1rem;
-  width: 250px;
+  width: auto;
   text-align: center;
   box-shadow: 0 2px 5px #228bc4;
+  background: transparent;
+  border: none;
 }
 .total, .attempts, .avg h3 {
-  background: #095076;
+  background: none;
   padding: 0.5rem;
   margin: -1rem -1rem 1rem -1rem;
   color: white;
