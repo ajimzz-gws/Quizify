@@ -26,15 +26,34 @@
                 placeholder="Enter quiz title">
 
                 <label for="quiz-desc">Description: </label>
-                <textarea id="quiz-desc" 
-                placeholder="Breif description">
-                </textarea>
+                <textarea id="quiz-desc" placeholder="Breif description"></textarea>
                 <button onclick="nextStep()">Next</button>
             </div>
 
             <!--add question-->
+            <div class="step-content hidden" id="step2">
+                <label for="question">Question: </label>
+                <input type="text" id="question" 
+                placeholder="Enter your question">
 
+                <label for="answer">Anaswer Choices: </label>
+                <input type="text" id="answer1" placeholder="Choice 1">
+                <input type="text" id="answer2" placeholder="Choice 2">
+                <input type="text" id="answer3" placeholder="Choice 3">
+                <input type="text" id="answer4" placeholder="Choice 4">
+                <button onclick="addQuestion()">Add Question</button>
+                <button onclick="nextStep()">Next</button>
+            </div>
 
+            <!--add question-->
+            <div class="step-content hidden" id="step3">
+                <h2>Review Your Quiz</h2>
+                <div id="preview"></div>
+
+                <button onclick="publishQuiz()">Publish Quiz</button>
+            </div>
         </div>
+
+        <script src="createQuiz2.js"></script>
 </boody>
 </html>

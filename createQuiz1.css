@@ -1,0 +1,74 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+/*header - tajuk*/
+header{
+    background: #0288d1;
+    padding: 15px;
+    color: white;
+}
+.quiz-container{
+    max-width: 1000px;
+    width: 100%;
+    margin: 40px auto;
+    padding: 40px 50px;
+    background: #b3e5fc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/*tiga yg atas*/
+.steps{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+.step{
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #1680b1;
+    font-weight: bold;
+    color: white;
+}
+.step.active{
+    background: #1680b1;
+    color: white;
+}
+.step-content{
+    display: block;
+}
+.hidden{
+    display: none;
+}
+
+input, textarea{
+    padding: 10px;
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: block;
+}
+
+form label{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background: #0288d1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto 0;
+}
