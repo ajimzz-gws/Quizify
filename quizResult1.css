@@ -9,7 +9,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #b3e5fc;
+    background-color: #0288d1;
     padding: 15px 20px;
     align-items: center;
     color: black;
@@ -44,10 +44,10 @@ nav ul li a {
 
 .result-container{
     max-width: 600px;
-    margin: 50px auto;
+    margin: 100px auto;
     background: white;
     padding: 30px;
-    border-radius: 112px;
+    border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
@@ -69,7 +69,7 @@ nav ul li a {
 .actions button {
   margin: 10px;
   padding: 10px 20px;
-  background-color: #00acc1;
+  background-color: #007bff;
   color: white;
   border: none;
   border-radius: 6px;
@@ -78,5 +78,5 @@ nav ul li a {
 }
 
 .actions button:hover {
-  background-color: #008ea2;
+  background-color: #0056b3;
 }
