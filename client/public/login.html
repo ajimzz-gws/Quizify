@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/login1.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="">
+            <h1>Sign Up</h1>
+            <p>Please fill in the form to create an account</p>
+
+            <!--email-->
+            <div class="input-box">
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter email" name="email" required />
+            </div>
+
+            <!--password-->
+            <div class="input-box">
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter password" name="psw" required />
+            </div>
+
+            <!--repeat-password-->
+            <div class="input-box">
+                <label for="psw-repeat"><b>Repeat password</b></label>
+                <input type="password" placeholder="Repeat password" name="psw-repeat" required>
+            </div>
+
+            <div class="remember-me">
+                <label>
+                    <input type="checkbox" checked="checked" name="remember">
+                    Remember me
+                </label>
+            </div>
+
+            <button type="button" class="btn" onclick="window.location.href='index.html'">Cancel</button>
+            <button type="submit" class="signup">Sign Up</button>
+        </form>
+    </div>
+</body>
+
+</html>
