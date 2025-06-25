@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quizify - Answer Quiz</title>
+    <link rel="stylesheet" href="quizResult1.css"/>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="server/images/ONLINE_QUIZ_LOGO-removebg-preview.png" 
+            alt="Quizify Logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#logout">Logout</a></li>
+            </ul>
+        </nav>
+        </header>
+
+        <main class="result-container">
+            <h1>Quiz Result</h1>
+
+            <div class="score-box">
+            <h2 id="percentage">--%</h2>
+            <p id="summary">Your scored -- out of --</p>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+            <div class="actions">
+                <button onclick="retakeQuiz()">Retake Quiz</button>
+                <button onclick="reviewAnswers()">Review Answers</button>
+            </div>
+        </main>
+
+        <script src="quizResult2.js"></script>
+
+</body>
+</html>

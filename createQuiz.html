@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Quizify</title>
+    <link rel="stylesheet" href="createQuiz1.css"/>
+</head>
+
+<boody>
+    <header>
+        <h1>Create a New Quiz</h1>
+        </header>
+
+        <div class="quiz-container">
+            <div class="steps">
+                <span class="step active">1. Quiz Info</span>
+                <span class="step">2. Add Questions</span>
+                <span class="step">3. Review & Publish</span>
+            </div>
+
+            <!--quiz info-->
+            <div class="step-content" id="step1">
+                <label for="quiz-title">Quiz Title: </label>
+                <input type="text" id="quiz-title" 
+                placeholder="Enter quiz title">
+
+                <label for="quiz-desc">Description: </label>
+                <textarea id="quiz-desc" placeholder="Breif description"></textarea>
+                <button onclick="nextStep()">Next</button>
+            </div>
+
+            <!--add question-->
+            <div class="step-content hidden" id="step2">
+                <label for="question">Question: </label>
+                <input type="text" id="question" 
+                placeholder="Enter your question">
+
+                <label for="answer">Anaswer Choices: </label>
+                <input type="text" id="answer1" placeholder="Choice 1">
+                <input type="text" id="answer2" placeholder="Choice 2">
+                <input type="text" id="answer3" placeholder="Choice 3">
+                <input type="text" id="answer4" placeholder="Choice 4">
+                <button onclick="addQuestion()">Add Question</button>
+                <button onclick="nextStep()">Next</button>
+            </div>
+
+            <!--add question-->
+            <div class="step-content hidden" id="step3">
+                <h2>Review Your Quiz</h2>
+                <div id="preview"></div>
+
+                <button onclick="publishQuiz()">Publish Quiz</button>
+            </div>
+        </div>
+
+        <script src="createQuiz2.js"></script>
+</boody>
+</html>
