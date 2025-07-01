@@ -17,12 +17,14 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: #b3e5fc;
-  padding: 15px 20px;
+  padding: 10px 20px;
+  height: 80px; /* Tetapkan tinggi yang kekal */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  overflow: hidden; /* Elakkan elemen terkeluar */
 }
 
 /* Logo */
@@ -31,13 +33,12 @@ header {
   align-items: center;
   gap: 5px;
 }
-
 .logo img {
-  width: 80px;
-  height: 80px;
+  height: 180px; /* Hadkan tinggi logo */
+  width: auto;
   object-fit: contain;
+  overflow: hidden;
 }
-
 .logo span {
   font-size: 24px;
   font-weight: bold;
@@ -61,43 +62,51 @@ header {
 /*tulisan di nav*/
 #navbar ul li a {
   text-decoration: none;
+  font-family: 'Poppins', sans-serif;
   color: black;
   font-size: 18px;
-  transition: color 0.3s;
+  font-weight: 600; 
+  letter-spacing: 1px; 
+  transition: color 0.3s, font-weight 0.3s;
 }
-
 #navbar ul li a:hover {
   color: #0288d1;
+  font-weight: 700;
+}
+#navbar ul li a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #0288d1;
+  transition: width 0.3s;
+  margin-top: 4px;
 }
 
-
-/* ========== Main Content ========== */
+#navbar ul li a:hover::after {
+  width: 100%;
+}
 
 /*main content*/
-
 main {
   text-align: center;
   padding: 50px 20px;
 }
-
 
 /* Hero Section (Home) */
 #home h1 {
   font-size: 36px;
   color: #0288d1;
 }
-
 #home h1 {
   font-size: 36px;
   color: #0288d1;
   margin-top: 100px;
 
 }
-
 .buttons {
   margin-top: 20px;
 }
-
 .buttons button {
   background-color: #0288d1;
   color: white;
@@ -108,20 +117,14 @@ main {
   cursor: pointer;
   border-radius: 5px;
 }
-
 .buttons button:hover {
   background-color: #0277bd;
 }
 
-
-/* ========== Section Styles (About, Features, Target, FAQ) ========== */
 section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: auto;
+  padding: 60px 40px;
+  width: 100%;
 }
-
-/* Features & Target Grid Layout */
 
 /*Section (About, Features, Target, FAQ) */
 .features,
@@ -140,7 +143,6 @@ section {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
-
 .card h3 {
   color: #0288d1;
   margin-bottom: 10px;
@@ -150,7 +152,6 @@ section {
 .faq {
   background-color: #e0f7fa;
 }
-
 .faq .card p {
   margin: 10px 0;
 }
@@ -159,28 +160,26 @@ section {
 footer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  text-align: center;
   padding: 20px;
   background-color: #b3e5fc;
-  align-items: center;
 }
 
 .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
   margin-bottom: 10px;
-
 }
-
 .social-icons a {
-  margin: 0 10px;
   display: inline-block;
-
 }
-
 .social-icons img {
-  /* ========== Responsive Design ========== */
-
   width: 30px;
   height: 30px;
+  object-fit: contain;
 }
 
 /*Responsive Design */
@@ -189,6 +188,9 @@ footer {
   header {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .logo img {
+    height: 50px;
   }
 
   .buttons button {
