@@ -34,7 +34,7 @@ header {
   gap: 5px;
 }
 .logo img {
-  height: 180px; /* Hadkan tinggi logo */
+  height: 70px; /* Hadkan tinggi logo */
   width: auto;
   object-fit: contain;
   overflow: hidden;
