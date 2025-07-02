@@ -26,7 +26,8 @@ Quizify is an easy-to-use online quiz and test platform designed for both educat
 - React Router DOM
 
 ### Backend
-- Node.js with Express.js
+- PHP 
+- Laravel Herd
 - Hosted on NGINX
 
 ### Database
