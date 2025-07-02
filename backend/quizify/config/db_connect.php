@@ -3,7 +3,7 @@
 $host = 'localhost';
 $user = 'root';          // change if needed
 $pass = '';              // change if needed
-$db   = 'quizify_db';    // change if needed
+$db   = 'quizify';    // change if needed
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
