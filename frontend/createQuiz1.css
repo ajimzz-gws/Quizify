@@ -1,9 +1,14 @@
-body{
+* {
+  box-sizing: border-box;
+}
+
+body, html{
     font-family: Arial, Helvetica, sans-serif;
     background: #f5f5f5;
     text-align: center;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 /*header - tajuk*/
 header{
@@ -12,14 +17,13 @@ header{
     color: white;
 }
 .quiz-container{
-    max-width: 1000px;
-    width: 100%;
-    margin: 40px auto;
-    padding: 40px 50px;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    margin: 0;
+    padding: 40px 20px;
     background: #b3e5fc;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    border-radius: 10px;
-    box-sizing: border-box;
+    box-shadow: none;
+    border-radius: 0;
 }
 
 /*tiga yg atas*/
@@ -71,4 +75,24 @@ button {
     cursor: pointer;
     display: block;
     margin: 20px auto 0;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+.button-group button {
+  padding: 10px 25px;
+  background: #0288d1;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.button-group button:hover {
+  background: #0277bd;
 }

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+
+    <!-- Background shapes -->
+    <div class="dashboard-bg">
+        <div class="shape-bottom-left"></div>
+        <div class="shape-top-right"></div>
+        <div class="shape-middle-left"></div>
+    </div>
+
+    <div class="relative w-full max-w-7xl bg-white rounded-3xl shadow-xl overflow-hidden md:flex md:min-h-[700px] lg:min-h-[800px]">
+
+        <!-- Header -->
+        <header class="absolute top-0 left-0 right-0 p-6 flex items-center justify-between bg-white bg-opacity-90 backdrop-blur-sm z-10 rounded-t-3xl">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-3xl font-extrabold text-gray-800">DASHBOARD</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Quizify Logo Placeholder -->
+                <div class="text-3xl font-bold text-orange-500">Quizify</div>
+                <div class="relative group">
+                    <button class="px-6 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">
+                        Account
+                    </button>
+                    <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-in-out pointer-events-none group-hover:pointer-events-auto">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-md">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-red-600 hover:bg-gray-100 rounded-md">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="flex flex-col md:flex-row flex-1 pt-24 md:pt-0">
+            <!-- Sidebar -->
+            <aside class="w-full md:w-1/4 bg-gradient-to-br from-blue-500 to-indigo-600 p-8 text-white flex flex-col space-y-8 rounded-bl-3xl md:rounded-bl-3xl md:rounded-tr-none rounded-t-none rounded-b-3xl">
+                <div class="flex flex-col items-center space-y-4 pt-4 md:pt-0">
+                    <div class="w-24 h-24 bg-white bg-opacity-30 rounded-full flex items-center justify-center text-4xl font-bold text-white shadow-inner">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-semibold">John Doe</h2>
+                    <p class="text-lg opacity-90">Class: 5A</p>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="text-xl font-semibold border-b border-white border-opacity-50 pb-2">Past Quiz</h3>
+                    <div class="relative">
+                        <select class="block w-full px-4 py-3 rounded-xl bg-white bg-opacity-20 text-white text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-200">
+                            <option value="">Select Class</option>
+                            <option value="5A">5A</option>
+                            <option value="5B">5B</option>
+                            <option value="5C">5C</option>
+                        </select>
+                    </div>
+                    <div class="relative">
+                        <select class="block w-full px-4 py-3 rounded-xl bg-white bg-opacity-20 text-white text-lg focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 transition duration-200">
+                            <option value="">Select Subject</option>
+                            <option value="Matematik">Matematik</option>
+                            <option value="Bahasa Melayu">Bahasa Melayu</option>
+                            <option value="Sejarah">Sejarah</option>
+                            <option value="Sains">Sains</option>
+                        </select>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="flex-1 p-8 bg-white rounded-tr-3xl rounded-br-3xl md:rounded-tl-none md:rounded-bl-none rounded-tl-none rounded-tr-none">
+                <div class="mb-8 p-6 bg-blue-50 rounded-2xl shadow-inner flex items-center space-x-4">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center text-3xl font-bold text-blue-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Welcome, John Doe!</h2>
+                        <p class="text-lg text-gray-600">Class: 5A</p>
+                    </div>
+                </div>
+
+                <!-- Quiz Results Table -->
+                <div class="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Quiz Results</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-xl">
+                                        Subject
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Quiz Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Score
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-xl">
+                                        Grade
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Matematik</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Kuiz Bab3: Algebra</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">60 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">C+</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Bahasa Melayu</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Tatabahasa Ayat Majmuk</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">78 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">B</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Sejarah</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Kuiz Online : Sejarah dunia</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">90 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">A+</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Sains</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Ujian Mikro: Elektrik</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">85 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">B+</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Sejarah</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Kuiz Online : Kesultanan Melaka</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">70 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">B-</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Sains</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Kuiz Akhir Bab: Sistem Pencernaan</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">80 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">B</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Sains</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">Kuiz Pantas: Rangkaian Makanan</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">100 / 100</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">A+</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
