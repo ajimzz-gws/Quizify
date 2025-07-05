@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Teacher Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom CSS file -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Font: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Apply Inter font family */
         body {
             font-family: 'Inter', sans-serif;
         }
+        /* Custom rotation for the chevron icon */
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
     <div class="dashboard-container relative w-full max-w-6xl bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
-        <!-- Header -->
         <header class="p-4 bg-white flex justify-between items-center z-10 border-b border-gray-200">
-            <h1 class="text-2xl font-bold text-gray-800">DASHBOARD</h1>
+            <h1 class="text-2xl font-bold text-gray-800">TEACHER DASHBOARD</h1>
             <div class="relative group">
                 <button class="flex items-center space-x-2 bg-transparent border-none cursor-pointer p-2 rounded-md hover:bg-gray-100 transition duration-300">
-                    <img src="https://placehold.co/100x40/6a0dad/ffffff?text=Quizify" alt="Quizify Logo" class="h-10 rounded">
+                    <img src="quizify2.png" alt="Quizify Logo" class="h-10 rounded">
                     <i class="fas fa-caret-down text-gray-600"></i>
                 </button>
                 <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
@@ -36,23 +37,23 @@
             </div>
         </header>
 
-        <!-- Main Dashboard Content Area -->
         <div class="flex flex-grow">
-            <!-- Sidebar -->
             <aside class="w-full lg:w-64 bg-blue-700 p-6 flex-shrink-0 text-white">
-                <!-- Welcome Section -->
-                <div class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold">Profile Teacher</h3>
+                    <button id="profileToggleButton" class="text-white focus:outline-none">
+                        <i id="profileToggleIcon" class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                </div>
+
+                <div id="profileDetails" class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
                     <i class="fas fa-user-circle text-4xl mr-3"></i>
                     <div>
-                        <p class="font-semibold text-lg">Welcome, John Doe!</p>
-                        <p class="text-sm opacity-90">Class: 5A</p>
+                        <p class="font-semibold text-lg">Welcome, Teacher Name!</p>
+                        <p class="text-sm opacity-90">Email: teacher@example.com</p>
                     </div>
                 </div>
 
-                <!-- Class 5A Title -->
-                <h3 class="text-lg font-semibold mb-4">Class: 5A</h3>
-
-                <!-- Navigation Links -->
                 <nav>
                     <ul>
                         <li class="mb-4">
@@ -83,22 +84,23 @@
                                 </div>
                             </div>
                         </li>
+                        <li class="mb-4 ml-4"> <a href="#" class="text-white hover:text-blue-200 block py-2 text-base">Quiz Library</a>
+                        </li>
+                        <li class="mb-4 ml-4"> <a href="#" class="text-white hover:text-blue-200 block py-2 text-base">Quiz Created</a>
+                        </li>
                     </ul>
                 </nav>
             </aside>
 
-            <!-- Main Content Area -->
             <main class="flex-grow p-6 bg-white rounded-br-xl">
-                <!-- Welcome Banner -->
                 <div class="bg-blue-100 p-4 rounded-lg mb-8 flex items-center">
                     <i class="fas fa-user-circle text-blue-700 text-3xl mr-4"></i>
                     <div>
-                        <p class="font-semibold text-blue-800 text-lg">Welcome, John Doe!</p>
-                        <p class="text-blue-600">Class: 5A</p>
+                        <p class="font-semibold text-lg">Welcome, Teacher Name!</p>
+                        <p class="text-blue-600">Email: teacher@example.com</p>
                     </div>
                 </div>
 
-                <!-- Quiz Table -->
                 <div class="overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
                         <thead>
@@ -106,7 +108,7 @@
                                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tl-lg">Subject</th>
                                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Quiz Name</th>
                                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Score</th>
-                                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tr-lg">Grade</th>
+                                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Grade</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -152,5 +154,20 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // Get references to the button and the profile details div
+        const profileToggleButton = document.getElementById('profileToggleButton');
+        const profileToggleIcon = document.getElementById('profileToggleIcon');
+        const profileDetails = document.getElementById('profileDetails');
+
+        // Add a click event listener to the button
+        profileToggleButton.addEventListener('click', () => {
+            // Toggle the 'hidden' class on the profile details div
+            profileDetails.classList.toggle('hidden');
+            // Toggle the 'rotate-180' class on the icon for visual feedback
+            profileToggleIcon.classList.toggle('rotate-180');
+        });
+    </script>
 </body>
 </html>
