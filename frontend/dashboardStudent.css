@@ -1,8 +1,9 @@
 /* Custom styles to enhance the design */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f0f2f5; /* Light gray background */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    background-color: #b3e5fc;; /* Light blue background */
+    overflow-x: hidden;
+    position: relative;
 }
 
 /* Custom background shapes */
@@ -12,8 +13,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    background: linear-gradient(to bottom right, #64b5f6, #2196f3); /* Stronger blues */
     z-index: -1;
+    overflow: hidden;
 }
 
 .shape-bottom-left {

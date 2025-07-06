@@ -51,12 +51,15 @@ header{
 }
 #step1 {
   background: white;
-  width: 100%;
-  margin: 0;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
+
 #step1 input,
 #step1 textarea {
   background: #f0f9ff;

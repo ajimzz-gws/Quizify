@@ -1,90 +1,31 @@
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 0;
-  height: 100%;
-  background: linear-gradient(to bottom, #90caf9, #64b5f6);
-  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
-  overflow-x: hidden;
-  transition: width 0.3s ease;
-  padding-top: 80px;
-  z-index: 999;
-  border-top-right-radius: 12px;
-  border-bottom-right-radius: 12px;
+main,
+.dash-container {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
 }
 
-.sidebar.active {
-  width: 220px;
-}
-
-.sidebar a {
-  padding: 14px 24px;
-  text-decoration: none;
-  font-size: 17px;
-  color: #0d47a1;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: background 0.2s, color 0.2s;
-  border-left: 4px solid transparent;
-}
-.sidebar a:hover {
-  background-color: #42a5f5;
-  color: white;
-  border-left: 4px solid #fff;
-  border-radius: 0 25px 25px 0;
-}
-
-/* Optional icon styling if you use icons like boxicons or FontAwesome */
-.sidebar a i {
-  font-size: 20px;
-}
-.hamburger {
-  font-size: 28px;
-  cursor: pointer;
-  margin-right: 15px;
-  color: #0d47a1;
-  transition: transform 0.2s ease;
-}
-.hamburger:hover {
-  transform: scale(1.1);
-}
-
-/* Navbar */
-#navbar ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-  margin-right: 30px;
-}
-
-#navbar ul li a {
-  text-decoration: none;
-  color: #0d47a1;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* ========== Header ========== */
+/* Header */
 body {
-    background-color: #e0f7fa;
-    line-height: 1.6;
-    scroll-behavior: smooth;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  background: #b3e5fc;
+  color: #333;
 }
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #b3e5fc;
-    padding: 15px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0288d1;
+  color: white;
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 80px; /* Fixed height */
+  overflow: visible;
 }
 
 /* Logo */
@@ -92,20 +33,82 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
+  height: 100%;
+  overflow: visible;
 }
 .logo img {
-  width: 100px;
-  height: auto;
+  height: 50px; /* Bigger than header */
+  width: auto;
   object-fit: contain;
-}
-.logo span {
-  font-size: 24px;
-  font-weight: bold;
-  color: #0288d1;
-  letter-spacing: 1px;
+  margin-top: -10px; /* Adjust vertical alignment */
 }
 
-/*container*/
+#navbar ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin-right: 30px;
+}
+
+#navbar ul li {
+  position: relative;
+}
+
+#navbar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 12px;
+  display: block;
+}
+
+/* Dropdown Menu (Sidebar Style but Shorter) */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 80px; /* below header */
+  left: 0;
+  width: 220px;
+  background-color: #0288d1;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  z-index: 1001;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid white;
+}
+
+/* Optional: style the toggle button */
+.dropdown-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-family: inherit; 
+}
+
+/* Show the sidebar-style dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* Dashboard Container */
 .dash-container {
   margin-top: 120px;
   display: flex;
@@ -114,37 +117,42 @@ header {
   gap: 1rem;
   padding: 40px;
 }
+
 .dash-container > div {
-  background-color: #075985;
+  background: linear-gradient(to bottom right, #42a5f5, #1e88e5);
   color: white;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 16px;
   width: 150px;
   height: 150px;
   font-size: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.dash-container > div:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Stat Cards */
 .total, .attempts, .avg {
   padding: 1rem;
   width: auto;
   text-align: center;
-  box-shadow: 0 2px 5px #228bc4;
   background: transparent;
   border: none;
 }
-.total, .attempts, .avg h3 {
+
+.total h3, .attempts h3, .avg h3 {
   background: none;
   padding: 0.5rem;
   margin: -1rem -1rem 1rem -1rem;
   color: white;
 }
 
-
-
-
-/* Responsive fix if needed */
+/* Responsive */
 @media screen and (max-width: 768px) {
   #navbar ul {
     flex-direction: column;

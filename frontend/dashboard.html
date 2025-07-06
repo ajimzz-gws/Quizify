@@ -10,67 +10,67 @@
 <body>
     <header>
         <div class="logo">
-            <span class="hamburger" onclick="toggleSidebar()">☰</span>
-            <img src="images/ONLINE_QUIZ_LOGO-removebg-preview.png" 
-            alt="Quizify Logo">
+          <img src="images/quizify2.png" alt="Quizify Logo">
         </div>
 
-         <nav id="navbar">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#logout">Logout</a></li>
-            </ul>
+        <nav id="navbar">
+          <ul>
+            <li class="dropdown">
+              <a href="javascript:void(0)" onclick="toggleDropdown()" class="dropdown-toggle">Dashboard ▾</a>
+              <ul id="dashboardDropdown" class="dropdown-menu">
+                <li><a href="#" id="dashboard-student">Dashboard Student</a></li>
+                <li><a href="#" id="dashboard-teacher">Dashboard Teacher</a></li>
+              </ul>
+            </li>
+
+            <li><a href="#my_quizes">My Quizzes</a></li>
+            <li><a href="#result">Result</a></li>
+            <li><a href="#logout">Logout</a></li>
+          </ul>
         </nav>
-    </header>
+      </header>
 
-    <!--side bar-->
-    <div id="sidebar" class="sidebar">
-    <a href="#dashboard">Dashboard</a>
-    <a href="#my_quizzes">My Quizzes</a>
-    <a href="#create_quiz">Create Quiz</a>
-    <a href="#results">Results</a>
-    <a href="#settings">Settings</a>
-</div>
-</body>
-
-<script>
-  function toggleSidebar() {
-    const sidebar = document.getElementById("sidebar");
-    sidebar.classList.toggle("active");
-  }
-
-  // Optional: close sidebar when a link is clicked
-  document.querySelectorAll("#sidebar a").forEach(link => {
-    link.addEventListener("click", () => {
-      document.getElementById("sidebar").classList.remove("active");
-    });
-  });
-</script>
-
-
-    <main>
-        <h2>Welcome Back!</h2>
+     <main>
 
         <!--container-->
+         <h2>Welcome Back!</h2>
         <section id="dashboard">
-        <div class="dash-container">
-            <div class="total">
-            <h3>Total Quizzes</h3>
-            </div>
-
-            <div class="attempts">
-            <h3>Attempts</h3>
-            </div>
-
-            <div class="avg">
-            <h3>Average Score</h3>
-            </div>
-        </div>
-
-        <h2>Recent Activity:</h2>
-
-          
+          <div class="dash-container">
+            <div class="total"><h3>Total Quizzes</h3></div>
+            <div class="attempts"><h3>Attempts</h3></div>
+            <div class="avg"><h3>Average Score</h3></div>
+          </div>
+        </section>
+        <h2>Recent Activity:</h2> 
     </main>
+
+    <script>
+      function toggleDropdown() {
+        const dropdown = document.getElementById("dashboardDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+      }
+
+      // Redirect when user clicks a dashboard option
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("dashboard-student").addEventListener("click", function () {
+          window.location.href = "dashboardStudent.html"; // Replace with your actual file name
+        });
+
+        document.getElementById("dashboard-teacher").addEventListener("click", function () {
+          window.location.href = "dashboardTeachers.html"; // Replace with your actual file name
+        });
+      });
+
+      // Optional: close dropdown when clicking outside
+      document.addEventListener("click", function (event) {
+        const toggle = document.querySelector(".dropdown-toggle");
+        const menu = document.getElementById("dashboardDropdown");
+        if (!toggle.contains(event.target) && !menu.contains(event.target)) {
+          menu.style.display = "none";
+        }
+      });
+    </script>
+
+
+</body>
 </html>
