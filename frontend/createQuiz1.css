@@ -20,7 +20,7 @@ header{
     width: 100vw;
     height: calc(100vh - 60px);
     margin: 0;
-    padding: 40px 20px;
+    padding: 40px 0px;
     background: #b3e5fc;
     box-shadow: none;
     border-radius: 0;
@@ -49,7 +49,34 @@ header{
 .hidden{
     display: none;
 }
+#step1 {
+  background: white;
+  width: 100%;
+  margin: 0;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+#step1 input,
+#step1 textarea {
+  background: #f0f9ff;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s;
+}
 
+#step1 input:focus,
+#step1 textarea:focus {
+  border-color: #0288d1;
+  outline: none;
+}
+#step1 label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #333;
+}
 input, textarea{
     padding: 10px;
     width: 90%;
