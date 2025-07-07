@@ -23,7 +23,7 @@ if ($user && password_verify($password, $user['password'])) {
     setcookie('user_id', $user['id'], time()+604800, '/');
   }
 
-  header('Location: ../public/dashboard.php');
+  header('Location: ../dashboard.php');
   exit;
 } else {
   // Invalid credentials
