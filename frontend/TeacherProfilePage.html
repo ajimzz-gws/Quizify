@@ -1,238 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Profile</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Apply Inter font family */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Profile</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
+
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-    <div class="profile-container w-full max-w-2xl bg-white shadow-lg rounded-xl overflow-hidden p-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Teacher Profile</h1>
+  <div class="profile-container w-full max-w-2xl bg-white shadow-lg rounded-xl overflow-hidden p-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Teacher Profile</h1>
 
-        <div class="flex flex-col items-center mb-8">
-            <div class="relative w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center mb-4">
-                <!-- Profile picture -->
-                <img id="profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Teacher" alt="Profile Picture" class="w-full h-full object-cover">
-                <!-- Edit icon overlay -->
-                <label for="image-upload" class="absolute bottom-0 right-0 bg-blue-600 p-2 rounded-full cursor-pointer hover:bg-blue-700 transition duration-300">
-                    <i class="fas fa-camera text-white text-lg"></i>
-                    <input type="file" id="image-upload" accept="image/*" class="hidden" onchange="previewImage(event)">
-                </label>
-            </div>
-            <h2 id="display-name" class="text-2xl font-semibold text-gray-800">Jane Smith</h2>
-            <p id="display-role" class="text-gray-600">Teacher</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                <h3 class="text-lg font-medium text-gray-700 mb-4">Personal Information</h3>
-                <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="Jane Smith">
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="jane.smith@example.com">
-                </div>
-                <div class="mb-4">
-                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                    <input type="tel" id="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="+987 654 3210">
-                </div>
-                <div>
-                    <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input type="date" id="dob" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="1975-05-15">
-                </div>
-            </div>
-
-            <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-                <h3 class="text-lg font-medium text-gray-700 mb-4">Professional Information</h3>
-                <div class="mb-4">
-                    <label for="teacher_id" class="block text-sm font-medium text-gray-700">Teacher ID</label>
-                    <input type="text" id="teacher_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="TCH002" readonly>
-                </div>
-                <div class="mb-4">
-                    <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-                    <input type="text" id="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="Mathematics">
-                </div>
-                <div class="mb-4">
-                    <label for="grade_levels" class="block text-sm font-medium text-gray-700">Grade Levels</label>
-                    <input type="text" id="grade_levels" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="7, 8, 9">
-                </div>
-                <div>
-                    <label for="years_experience" class="block text-sm font-medium text-gray-700">Years of Experience</label>
-                    <input type="number" id="years_experience" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" value="10">
-                </div>
-            </div>
-        </div>
-
-        <div class="flex justify-center space-x-4">
-            <button onclick="saveProfileChanges()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                <i class="fas fa-save mr-2"></i> Save Changes
-            </button>
-            <button onclick="goBackToDashboard()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
-            </button>
-        </div>
+    <!-- Profile Picture -->
+    <div class="flex flex-col items-center mb-8">
+      <div class="relative w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center mb-4">
+        <img id="profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Teacher" alt="Profile Picture" class="w-full h-full object-cover" />
+        <label for="image-upload" class="absolute bottom-0 right-0 bg-blue-600 p-2 rounded-full cursor-pointer hover:bg-blue-700 transition duration-300">
+          <i class="fas fa-camera text-white text-lg"></i>
+          <input type="file" id="image-upload" accept="image/*" class="hidden" />
+        </label>
+      </div>
+      <h2 id="display-name" class="text-2xl font-semibold text-gray-800">Jane Smith</h2>
+      <p id="display-role" class="text-gray-600">Teacher</p>
     </div>
 
-    <script type="module">
-        // Firebase imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- Form Fields -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <!-- Personal Info -->
+      <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+        <h3 class="text-lg font-medium text-gray-700 mb-4">Personal Information</h3>
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+        <div class="mb-4">
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+          <input type="tel" id="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+        <div>
+          <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+          <input type="date" id="dob" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+      </div>
 
-        // Firebase variables (will be initialized on window.onload)
-        let app;
-        let db;
-        let auth;
-        let userId;
-        let appId;
+      <!-- Professional Info -->
+      <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
+        <h3 class="text-lg font-medium text-gray-700 mb-4">Professional Information</h3>
+        <div class="mb-4">
+          <label for="teacher_id" class="block text-sm font-medium text-gray-700">Teacher ID</label>
+          <input type="text" id="teacher_id" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+        <div class="mb-4">
+          <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+          <input type="text" id="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+        <div class="mb-4">
+          <label for="grade_levels" class="block text-sm font-medium text-gray-700">Grade Levels</label>
+          <input type="text" id="grade_levels" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+        <div>
+          <label for="years_experience" class="block text-sm font-medium text-gray-700">Years of Experience</label>
+          <input type="number" id="years_experience" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+        </div>
+      </div>
+    </div>
 
-        // Default profile data for a teacher
-        let userProfile = {
-            name: "Jane Smith",
-            email: "jane.smith@example.com",
-            phone: "+987 654 3210",
-            dob: "1975-05-15",
-            teacherId: "TCH002",
-            subject: "Mathematics",
-            gradeLevels: "7, 8, 9",
-            yearsExperience: 10,
-            profileImage: "https://placehold.co/128x128/cccccc/333333?text=Teacher"
-        };
+    <!-- Action Buttons -->
+    <div class="flex justify-center space-x-4">
+      <button id="save-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        <i class="fas fa-save mr-2"></i> Save Changes
+      </button>
+      <button id="back-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
+      </button>
+    </div>
+  </div>
 
-        /**
-         * Initializes the form fields and profile picture with current data.
-         */
-        function loadProfileData() {
-            document.getElementById('name').value = userProfile.name;
-            document.getElementById('email').value = userProfile.email;
-            document.getElementById('phone').value = userProfile.phone;
-            document.getElementById('dob').value = userProfile.dob;
-            document.getElementById('teacher_id').value = userProfile.teacherId;
-            document.getElementById('subject').value = userProfile.subject;
-            document.getElementById('grade_levels').value = userProfile.gradeLevels;
-            document.getElementById('years_experience').value = userProfile.yearsExperience;
-            document.getElementById('profile-picture').src = userProfile.profileImage;
-            document.getElementById('display-name').textContent = userProfile.name;
-            console.log("Profile Page: Data loaded into form:", userProfile);
-        }
-
-        /**
-         * Saves the changes made in the profile form fields to Firestore.
-         */
-        async function saveProfileChanges() {
-            userProfile.name = document.getElementById('name').value;
-            userProfile.email = document.getElementById('email').value;
-            userProfile.phone = document.getElementById('phone').value;
-            userProfile.dob = document.getElementById('dob').value;
-            userProfile.subject = document.getElementById('subject').value;
-            userProfile.gradeLevels = document.getElementById('grade_levels').value;
-            userProfile.yearsExperience = document.getElementById('years_experience').value;
-            userProfile.profileImage = document.getElementById('profile-picture').src;
-
-            // Update displayed name immediately
-            document.getElementById('display-name').textContent = userProfile.name;
-
-            console.log("Profile Page: Attempting to save profile changes to Firestore:", userProfile);
-
-            try {
-                if (!db || !userId || !appId) {
-                    console.error("Firestore not initialized or userId/appId missing.");
-                    return;
-                }
-                const profileRef = doc(db, `artifacts/${appId}/users/${userId}/userProfiles`, "myProfile");
-                await setDoc(profileRef, userProfile);
-                console.log("Profile Page: Profile changes saved to Firestore successfully!");
-                goBackToDashboard(); // Redirect after successful save
-            } catch (error) {
-                console.error("Profile Page: Error saving profile to Firestore:", error);
-            }
-        }
-
-        /**
-         * Function to navigate back to the dashboard.
-         * No longer passes data via URL as it's now stored in Firestore.
-         */
-        function goBackToDashboard() {
-            console.log("Profile Page: Navigating back to dashboard.");
-            window.location.href = `./dashboardTeachers.html`; // Assuming a dashboardTeachers.html exists
-        }
-
-        /**
-         * Previews the selected image from the file input.
-         * @param {Event} event The change event from the file input.
-         */
-        function previewImage(event) {
-            const profilePicture = document.getElementById('profile-picture');
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    profilePicture.src = e.target.result;
-                    userProfile.profileImage = e.target.result; // Update profile data immediately
-                    console.log("Profile Page: Image preview updated. New image data length:", e.target.result.length);
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        // Initialize Firebase and load profile data when the page loads
-        window.onload = async function() {
-            // Global variables provided by the Canvas environment
-            appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-            const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-            const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-            if (Object.keys(firebaseConfig).length === 0) {
-                console.error("Firebase config is missing or empty.");
-                return;
-            }
-
-            try {
-                app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                    console.log("Profile Page: Signed in with custom token.");
-                } else {
-                    await signInAnonymously(auth);
-                    console.log("Profile Page: Signed in anonymously.");
-                }
-                userId = auth.currentUser?.uid || crypto.randomUUID();
-                console.log("Profile Page: User ID:", userId);
-
-                // Try to load existing profile from Firestore
-                const profileRef = doc(db, `artifacts/${appId}/users/${userId}/userProfiles`, "myProfile");
-                const profileSnap = await getDoc(profileRef);
-
-                if (profileSnap.exists()) {
-                    userProfile = profileSnap.data();
-                    console.log("Profile Page: Loaded profile from Firestore:", userProfile);
-                } else {
-                    console.log("Profile Page: No existing profile found in Firestore. Using default.");
-                }
-                loadProfileData();
-
-            } catch (error) {
-                console.error("Profile Page: Firebase initialization or data loading error:", error);
-            }
-        };
-    </script>
+  <!-- JS Logic -->
+  <script type="module" src="TeacherProfile2.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ let currentQuestionIndex = 0;
 let quizData = [];
 let totalQuestions = 0;
 
-// Handle step switching
+// Step navigation
 function nextStep() {
   if (currentStep === 1) {
     const total = document.getElementById("totalQuestions").value;
@@ -12,7 +12,6 @@ function nextStep() {
       return;
     }
     totalQuestions = parseInt(total);
-    localStorage.setItem("totalQuestions", total);
     document.getElementById("step1").classList.add("hidden");
     document.getElementById("step2").classList.remove("hidden");
     currentStep = 2;
@@ -22,8 +21,9 @@ function nextStep() {
     return;
   }
 
-  // Step 2: Navigate forward through questions
   if (currentStep === 2) {
+    addQuestion();
+
     if (currentQuestionIndex < totalQuestions - 1) {
       currentQuestionIndex++;
       loadQuestion(currentQuestionIndex);
@@ -71,14 +71,12 @@ function addQuestion() {
   ];
 
   if (question.trim() === "" || choices.some(choice => choice.trim() === "")) {
-    alert("Please fill in all fields before adding a question.");
+    alert("Please fill in all fields before saving the question.");
     return;
   }
 
-  // Update current index or add new
   quizData[currentQuestionIndex] = { question, choices };
   updateQuestionCountDisplay();
-  alert(`Question ${currentQuestionIndex + 1} saved`);
 }
 
 function loadQuestion(index) {
@@ -92,37 +90,110 @@ function loadQuestion(index) {
 
 function updateQuestionCountDisplay() {
   const tracker = document.getElementById("questionTracker");
-  const total = totalQuestions || localStorage.getItem("totalQuestions") || "?";
-  tracker.textContent = `${quizData.filter(q => q).length} / ${total} questions added (currently editing Q${currentQuestionIndex + 1})`;
-}
-
-function saveToLocal() {
-  localStorage.setItem("quizData", JSON.stringify(quizData));
-  alert("Quiz saved locally!");
+  tracker.textContent = `${quizData.filter(q => q).length} / ${totalQuestions} questions added (currently editing Q${currentQuestionIndex + 1})`;
 }
 
 function updatePreview() {
-  let previewDiv = document.getElementById("preview");
+  const previewDiv = document.getElementById("preview");
   previewDiv.innerHTML = "";
 
+  const title = document.getElementById("quiz-title").value;
+  const desc = document.getElementById("quiz-desc").value;
+
+  previewDiv.innerHTML += `
+    <div class="quiz-meta">
+      <h2>${title}</h2>
+      <p>${desc}</p>
+    </div>
+  `;
+
   quizData.forEach((q, index) => {
-    let questionHTML = `<p><strong>${index + 1}. ${q.question}</strong></p>`;
-    q.choices.forEach(choice => {
-      questionHTML += `<p>- ${choice}</p>`;
-    });
+    let questionHTML = `
+      <div class="question-card">
+        <h3>Question ${index + 1}</h3>
+        <p class="question-text">${q.question}</p>
+        <ul class="choices">
+          ${q.choices.map(choice => `<li>${choice}</li>`).join("")}
+        </ul>
+      </div>
+    `;
     previewDiv.innerHTML += questionHTML;
   });
 
   updateQuestionCountDisplay();
 }
 
-function publishQuiz() {
-  if (quizData.length === 0) {
-    alert("You need to add at least one question before publishing!");
+// ✅ Save button: sends quiz to backend as a draft
+function saveQuiz() {
+  const title = document.getElementById("quiz-title").value;
+  const description = document.getElementById("quiz-desc").value;
+
+  if (!title || quizData.length === 0) {
+    alert("Please enter a title and at least one question before saving.");
     return;
   }
 
-  localStorage.setItem("quizData", JSON.stringify(quizData));
-  alert("Quiz published successfully!");
-  window.location.href = "published.html";
+  fetch("http://localhost:8000/api/quizzes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      title,
+      description,
+      questions: quizData,
+      status: "draft"
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert("Quiz saved as draft!");
+    } else {
+      alert("Failed to save quiz: " + (data.message || "Unknown error"));
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Something went wrong while saving the quiz.");
+  });
+}
+
+// ✅ Publish button: sends quiz to backend as published
+function publishQuiz() {
+  if (quizData.length < totalQuestions) {
+    alert(`You need to complete all ${totalQuestions} questions before publishing!`);
+    return;
+  }
+
+  const title = document.getElementById("quiz-title").value;
+  const description = document.getElementById("quiz-desc").value;
+
+  fetch("http://localhost:8000/api/quizzes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({
+      title,
+      description,
+      questions: quizData,
+      status: "published"
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      alert("Quiz published and saved to database!");
+      window.location.href = "published.html";
+    } else {
+      alert("Failed to publish quiz: " + (data.message || "Unknown error"));
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Something went wrong while publishing the quiz.");
+  });
 }

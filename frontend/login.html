@@ -36,5 +36,29 @@
       </div>
     </form>
   </div>
+
+   <!-- ✅ JavaScript to handle login -->
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const response = await fetch('http://localhost/quizify/backend/api/login.php', {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      });
+
+      if (response.redirected) {
+        window.location.href = response.url;
+      } else {
+        const result = await response.json();
+        alert(result.error || 'Login failed');
+      }
+    });
+  </script>
+
 </body>
 </html>

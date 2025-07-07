@@ -34,9 +34,8 @@
                 </div>
 
                 <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-                    <!-- Log out button with JavaScript function call -->
-                    <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100" onclick="handleLogout()">Log out</a>
+                    <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                    <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
                 </div>
             </div>
         </header>
@@ -158,19 +157,7 @@
         </div>
     </div>
 
-    <script>
-        /**
-         * Handles the logout action.
-         * In a real application, this function would contain logic to:
-         * 1. Clear user session data (e.g., remove tokens from localStorage/sessionStorage).
-         * 2. Redirect to a login page or home page.
-         * 3. Potentially make an API call to invalidate the session on the server-side.
-         */
-        function handleLogout() {
-            // For demonstration, we'll just redirect to a placeholder login page.
-            // Changed 'login.html' to './login.html' to ensure proper relative path resolution.
-            window.location.href = './login.html';
-        }
-    </script>
+      <script type="module" src="dashboardStudent2.js"></script>
+
 </body>
 </html>

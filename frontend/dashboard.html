@@ -1,76 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Quizify</title>
-    <link rel="stylesheet" href="dashboard1.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quizify</title>
+  <link rel="stylesheet" href="dashboard1.css"/>
 </head>
 
 <body>
-    <header>
-        <div class="logo">
-          <img src="images/quizify2.png" alt="Quizify Logo">
-        </div>
+  <header>
+    <div class="logo">
+      <img src="images/quizify2.png" alt="Quizify Logo">
+    </div>
 
-        <nav id="navbar">
-          <ul>
-            <li class="dropdown">
-              <a href="javascript:void(0)" onclick="toggleDropdown()" class="dropdown-toggle">Dashboard ▾</a>
-              <ul id="dashboardDropdown" class="dropdown-menu">
-                <li><a href="#" id="dashboard-student">Dashboard Student</a></li>
-                <li><a href="#" id="dashboard-teacher">Dashboard Teacher</a></li>
-              </ul>
-            </li>
-
-            <li><a href="#my_quizes">My Quizzes</a></li>
-            <li><a href="#result">Result</a></li>
-            <li><a href="#logout">Logout</a></li>
+    <nav id="navbar">
+      <ul>
+        <li class="dropdown">
+          <a href="javascript:void(0)" onclick="toggleDropdown()" class="dropdown-toggle">Dashboard ▾</a>
+          <ul id="dashboardDropdown" class="dropdown-menu">
+            <li><a href="#" id="dashboard-student">Dashboard Student</a></li>
+            <li><a href="#" id="dashboard-teacher">Dashboard Teacher</a></li>
           </ul>
-        </nav>
-      </header>
+        </li>
+        <li><a href="#" id="my-quizzes">My Quizzes</a></li>
+        <li><a href="#" id="result-link">Result</a></li>
+        <li><a href="#" id="logout-btn">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
 
-     <main>
+  <main>
+    <h2>Welcome Back!</h2>
+    <section id="dashboard">
+      <div class="dash-container">
+        <div class="total"><h3>Total Quizzes</h3><p>Loading...</p></div>
+        <div class="attempts"><h3>Attempts</h3><p>Loading...</p></div>
+        <div class="avg"><h3>Average Score</h3><p>Loading...</p></div>
+      </div>
+    </section>
+    <h2>Recent Activity:</h2> 
+  </main>
 
-        <!--container-->
-         <h2>Welcome Back!</h2>
-        <section id="dashboard">
-          <div class="dash-container">
-            <div class="total"><h3>Total Quizzes</h3></div>
-            <div class="attempts"><h3>Attempts</h3></div>
-            <div class="avg"><h3>Average Score</h3></div>
-          </div>
-        </section>
-        <h2>Recent Activity:</h2> 
-    </main>
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dashboardDropdown");
+      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
 
-    <script>
-      function toggleDropdown() {
-        const dropdown = document.getElementById("dashboardDropdown");
-        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    document.addEventListener("DOMContentLoaded", function () {
+      // Dashboard role switching
+      document.getElementById("dashboard-student").addEventListener("click", function () {
+        window.location.href = "dashboardStudent.html";
+      });
+
+      document.getElementById("dashboard-teacher").addEventListener("click", function () {
+        window.location.href = "dashboardTeachers.html";
+      });
+
+      // Header navigation buttons
+      document.getElementById("my-quizzes").addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = "myQuizzes.html";
+      });
+
+      document.getElementById("result-link").addEventListener("click", function (e) {
+        e.preventDefault();
+        window.location.href = "quizResult.html";
+      });
+
+      document.getElementById("logout-btn").addEventListener("click", function (e) {
+        e.preventDefault();
+        // Optional: clear session or token here
+        alert("You have been logged out.");
+        window.location.href = "login.html";
+      });
+
+      // Fetch dashboard data from backend
+      fetch("http://localhost:8000/api/dashboard/student")
+        .then(res => res.json())
+        .then(data => {
+          document.querySelector(".total").innerHTML = `<h3>Total Quizzes</h3><p>${data.total_quizzes}</p>`;
+          document.querySelector(".attempts").innerHTML = `<h3>Attempts</h3><p>${data.attempts}</p>`;
+          document.querySelector(".avg").innerHTML = `<h3>Average Score</h3><p>${data.average_score}%</p>`;
+        })
+        .catch(err => {
+          console.error("Failed to load dashboard data:", err);
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (event) {
+      const toggle = document.querySelector(".dropdown-toggle");
+      const menu = document.getElementById("dashboardDropdown");
+      if (!toggle.contains(event.target) && !menu.contains(event.target)) {
+        menu.style.display = "none";
       }
-
-      // Redirect when user clicks a dashboard option
-      document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("dashboard-student").addEventListener("click", function () {
-          window.location.href = "dashboardStudent.html"; // Replace with your actual file name
-        });
-
-        document.getElementById("dashboard-teacher").addEventListener("click", function () {
-          window.location.href = "dashboardTeachers.html"; // Replace with your actual file name
-        });
-      });
-
-      // Optional: close dropdown when clicking outside
-      document.addEventListener("click", function (event) {
-        const toggle = document.querySelector(".dropdown-toggle");
-        const menu = document.getElementById("dashboardDropdown");
-        if (!toggle.contains(event.target) && !menu.contains(event.target)) {
-          menu.style.display = "none";
-        }
-      });
-    </script>
-
-
+    });
+  </script>
 </body>
 </html>

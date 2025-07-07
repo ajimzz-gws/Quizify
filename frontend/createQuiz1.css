@@ -16,15 +16,15 @@ header{
     padding: 15px;
     color: white;
 }
-.quiz-container{
-    width: 100vw;
-    height: calc(100vh - 60px);
-    margin: 0;
-    padding: 40px 0px;
-    background: #b3e5fc;
-    box-shadow: none;
-    border-radius: 0;
+.quiz-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 40px 0;
+  background: #b3e5fc;
+  box-shadow: none;
+  border-radius: 0;
 }
+
 
 /*tiga yg atas*/
 .steps{
@@ -126,3 +126,99 @@ button {
 .button-group button:hover {
   background: #0277bd;
 }
+
+/* Step 3: Review Section */
+#step3 {
+  background: white;
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Preview Container */
+#preview {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f0f9ff;
+  border-radius: 16px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Individual Question Card */
+.question-card {
+  background: #e1f5fe;
+  border-left: 6px solid #0288d1;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.question-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Question Title */
+.question-card h3 {
+  margin-top: 0;
+  color: #0277bd;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Question Text */
+.question-text {
+  font-weight: 500;
+  margin-bottom: 16px;
+  font-size: 17px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Answer Choices */
+.choices {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.choices li {
+  padding: 10px 14px;
+  background-color: #ffffff;
+  border: 1px solid #b3e5fc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.choices li:hover {
+  background-color: #e0f7fa;
+}
+
+/* Publish Button */
+#step3 button {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: #0288d1;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#step3 button:hover {
+  background: #0277bd;
+}
+
