@@ -28,6 +28,12 @@ $quizzes = $db->pdo->query("
   </header>
 
   <main class="container mx-auto px-4 py-8">
+    <div class="fixed bottom-4 left-4 z-50">
+      <a href="dashboard_student.php" 
+        class="flex items-center px-4 py-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+        <i class="fas fa-home mr-2"></i> Dashboard
+      </a>
+  </div>
     <?php if (empty($quizzes)): ?>
       <div class="text-center py-12 text-gray-600">
         <p class="text-lg">No quizzes available at the moment.</p>
