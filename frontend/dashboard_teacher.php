@@ -106,7 +106,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
               </a>
             </li>
             <li>
-              <a href="quiz_library.php" class="flex items-center space-x-2 py-2 px-3 hover:bg-blue-600 rounded-md">
+              <a href="quiz_library_teacher.php" class="flex items-center space-x-2 py-2 px-3 hover:bg-blue-600 rounded-md">
                 <i class="fas fa-book"></i>
                 <span>Quiz Library</span>
               </a>

@@ -1,7 +1,5 @@
 <?php
 require_once 'bootstrap.php';
-// Make sure this is at the very top of bootstrap.php
-session_start();
 
 // Then check if session is active
 if (session_status() !== PHP_SESSION_ACTIVE) {
@@ -35,7 +33,7 @@ if ($quiz['created_by'] != $_SESSION['user_id']) {
 $attempts = $db->pdo->query("
     SELECT a.*, u.full_name as student_name, u.email as student_email
     FROM quiz_attempts a
-    JOIN users u ON a.student_id = u.id
+    JOIN users u ON a.user_id = u.id
     WHERE a.quiz_id = $quizId
     ORDER BY a.completed_at DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
