@@ -1,6 +1,5 @@
 <?php
 require_once 'bootstrap.php';
-
 $auth->preventBackButton();
 $auth->requireRole('student');
 
@@ -19,9 +18,17 @@ $studentData = isset($student['student_data']) ? json_decode($student['student_d
     'emergency_contact' => ''
 ];
 
+// Fetch available quizzes
+$availableQuizzes = $db->pdo->query("
+    SELECT id, title, description 
+    FROM quizzes 
+    WHERE status = 'published'
+    ORDER BY created_at DESC
+")->fetchAll(PDO::FETCH_ASSOC);
+
 // Fetch quiz attempts
 $attempts = $db->pdo->query("
-    SELECT q.title, q.category, qa.score, qa.submitted_at
+    SELECT q.title, q.category, qa.score, qa.submitted_at, q.id as quiz_id
     FROM quiz_attempts qa
     JOIN quizzes q ON qa.quiz_id = q.id
     WHERE qa.user_id = $userId
@@ -52,6 +59,15 @@ function calculateGrade($score) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    body {
+      min-height: 100vh;
+    }
+    .dashboard-container {
+      width: 100%;
+      max-width: none;
+    }
+  </style>
   <script>
     window.addEventListener("pageshow", function(event) {
         if (event.persisted) window.location.reload();
@@ -65,10 +81,10 @@ function calculateGrade($score) {
   <div class="absolute inset-0 bg-blue-900 opacity-60 z-0"></div>
 
   <!-- Page Content -->
-  <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white bg-opacity-95 w-full max-w-6xl shadow-xl rounded-xl overflow-hidden flex flex-col">
+  <div class="relative z-10 min-h-screen p-4">
+    <div class="dashboard-container bg-white bg-opacity-95 shadow-xl rounded-xl overflow-hidden flex flex-col mx-auto">
 
-      <!-- Header -->
+      <!-- Header (unchanged) -->
       <header class="p-4 bg-white flex justify-between items-center sticky top-0 z-50 border-b border-gray-200">
         <h1 class="text-xl sm:text-2xl font-bold text-gray-800">STUDENT DASHBOARD</h1>
         <div class="relative">
@@ -98,7 +114,7 @@ function calculateGrade($score) {
 
       <!-- Main Layout -->
       <div class="flex flex-col lg:flex-row flex-grow">
-        <!-- Sidebar -->
+        <!-- Sidebar - Simplified -->
         <aside class="w-full lg:w-64 bg-blue-700 p-6 text-white">
           <div class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
             <i class="fas fa-user-circle text-4xl mr-3"></i>
@@ -108,22 +124,22 @@ function calculateGrade($score) {
             </div>
           </div>
 
-          <h3 class="text-lg font-semibold mb-4">Class: <?= htmlspecialchars($studentData['class']) ?></h3>
-
           <nav>
             <ul>
               <li class="mb-4">
-                <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Past Quiz</a>
+                <a href="#available-quizzes" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">
+                  <i class="fas fa-list-alt mr-2"></i>Available Quizzes
+                </a>
               </li>
               <li class="mb-4">
-                <select class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none">
-                  <option>Select Subject</option>
-                  <?php
-                  $subjects = $db->pdo->query("SELECT DISTINCT category FROM quizzes")->fetchAll(PDO::FETCH_COLUMN);
-                  foreach ($subjects as $subject): ?>
-                    <option><?= htmlspecialchars($subject) ?></option>
-                  <?php endforeach; ?>
-                </select>
+                <a href="#quiz-results" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">
+                  <i class="fas fa-chart-bar mr-2"></i>Your Results
+                </a>
+              </li>
+              <li class="mb-4">
+                <a href="quiz_library.php" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">
+                  <i class="fas fa-book mr-2"></i>Quiz Library
+                </a>
               </li>
             </ul>
           </nav>
@@ -156,38 +172,68 @@ function calculateGrade($score) {
             </div>
           </div>
 
-          <!-- Quiz Results Table -->
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Quiz Results</h2>
-          <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-              <thead>
-                <tr class="bg-gray-100 border-b border-gray-200">
-                  <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Subject</th>
-                  <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Quiz Name</th>
-                  <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Score</th>
-                  <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Grade</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($attempts as $attempt): ?>
-                  <tr class="border-b border-gray-200">
-                    <td class="py-3 px-4 text-sm text-gray-700"><?= htmlspecialchars($attempt['category']) ?></td>
-                    <td class="py-3 px-4 text-sm text-gray-700"><?= htmlspecialchars($attempt['title']) ?></td>
-                    <td class="py-3 px-4 text-sm text-gray-700"><?= $attempt['score'] ?? 'N/A' ?></td>
-                    <td class="py-3 px-4 text-sm text-gray-700"><?= isset($attempt['score']) ? calculateGrade($attempt['score']) : 'N/A' ?></td>
-                  </tr>
+          <!-- Available Quizzes Section -->
+          <section id="available-quizzes" class="mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Available Quizzes</h2>
+            <?php if (empty($availableQuizzes)): ?>
+              <div class="bg-white p-6 rounded-lg shadow border border-gray-200 text-center text-gray-500">
+                No quizzes available at the moment
+              </div>
+            <?php else: ?>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <?php foreach ($availableQuizzes as $quiz): ?>
+                  <div class="bg-white p-4 rounded-lg shadow border border-gray-200">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2"><?= htmlspecialchars($quiz['title']) ?></h3>
+                    <?php if (!empty($quiz['description'])): ?>
+                      <p class="text-gray-600 mb-3"><?= htmlspecialchars($quiz['description']) ?></p>
+                    <?php endif; ?>
+                    <a href="take_quiz.php?id=<?= $quiz['id'] ?>" 
+                       class="inline-block px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                      Take Quiz
+                    </a>
+                  </div>
                 <?php endforeach; ?>
-                <?php if (empty($attempts)): ?>
-                  <tr>
-                    <td colspan="4" class="py-4 text-center text-gray-500">No quiz attempts yet</td>
+              </div>
+            <?php endif; ?>
+          </section>
+
+          <!-- Quiz Results Table -->
+          <section id="quiz-results">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Quiz Results</h2>
+            <div class="overflow-x-auto">
+              <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                <thead>
+                  <tr class="bg-gray-100 border-b border-gray-200">
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Subject</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Quiz Name</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Score</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Grade</th>
+                    <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Action</th>
                   </tr>
-                <?php endif; ?>
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  <?php foreach ($attempts as $attempt): ?>
+                    <tr class="border-b border-gray-200">
+                      <td class="py-3 px-4 text-sm text-gray-700"><?= htmlspecialchars($attempt['category']) ?></td>
+                      <td class="py-3 px-4 text-sm text-gray-700"><?= htmlspecialchars($attempt['title']) ?></td>
+                      <td class="py-3 px-4 text-sm text-gray-700"><?= $attempt['score'] ?? 'N/A' ?></td>
+                      <td class="py-3 px-4 text-sm text-gray-700"><?= isset($attempt['score']) ? calculateGrade($attempt['score']) : 'N/A' ?></td>
+                      <td class="py-3 px-4 text-sm text-gray-700">
+                        <a href="quiz_review.php?quiz_id=<?= $attempt['quiz_id'] ?>" class="text-blue-600 hover:underline">Review</a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                  <?php if (empty($attempts)): ?>
+                    <tr>
+                      <td colspan="5" class="py-4 text-center text-gray-500">No quiz attempts yet</td>
+                    </tr>
+                  <?php endif; ?>
+                </tbody>
+              </table>
+            </div>
+          </section>
         </main>
       </div>
-
     </div>
   </div>
 </body>
