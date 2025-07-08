@@ -1,64 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="login1.css" />
   <title>Login</title>
 </head>
+
 <body>
   <div class="wrapper">
-    <form action="../api/login.php" method="POST">
+    <!-- Change action to point to login.php -->
+    <form id="loginForm" action="login.php" method="POST">
       <h1>Log In</h1>
 
-      <!-- Email -->
+      <!-- PHP error display -->
+      <?php if (isset($_GET['error'])): ?>
+      <div class="error" style="color: red; margin-bottom: 15px;">
+        <?php echo htmlspecialchars($_GET['error']); ?>
+      </div>
+      <?php endif; ?>
+
       <div class="input-box">
-        <input type="text" name="email" placeholder="Email" required />
+        <input type="email" name="email" placeholder="Email" required />
         <i class='bx bxs-user'></i>
       </div>
 
-      <!-- Password -->
       <div class="input-box">
         <input type="password" name="password" placeholder="Password" required />
         <i class='bx bxs-lock-alt'></i>
       </div>
 
-      <!-- Remember Me -->
       <div class="remember-forgot">
         <label><input type="checkbox" name="remember" /> Remember me</label>
-        <a href="#forgot-password">Forgot Password</a>
+        <a href="forgot_password.php">Forgot Password</a>
       </div>
 
       <button type="submit" class="btn">Login</button>
 
       <div class="register-link">
-        <p>Don't have an account? <a href="signup.html">Register</a></p>
+        <p>Don't have an account? <a href="signup.php">Register</a></p>
       </div>
     </form>
   </div>
 
-   <!-- ✅ JavaScript to handle login -->
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const form = e.target;
-      const formData = new FormData(form);
-
-      const response = await fetch('http://localhost/quizify/backend/api/login.php', {
-        method: 'POST',
-        body: formData,
-        credentials: 'include'
-      });
-
-      if (response.redirected) {
-        window.location.href = response.url;
-      } else {
-        const result = await response.json();
-        alert(result.error || 'Login failed');
-      }
-    });
-  </script>
-
+  <!-- Remove the JavaScript submit handler since we're using standard form submission -->
 </body>
+
 </html>
