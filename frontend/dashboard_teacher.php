@@ -74,7 +74,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
           <img src="<?= htmlspecialchars($teacher['profile_image'] ?? 'https://placehold.co/128x128/cccccc/333333?text=Teacher') ?>" 
                alt="Profile" class="w-12 h-12 rounded-full mr-3 object-cover">
           <div>
-            <p class="font-semibold"><?= htmlspecialchars($teacher['name']) ?></p>
+            <p class="font-semibold"><?= htmlspecialchars($teacher['full_name']) ?></p>
             <p class="text-sm opacity-90"><?= htmlspecialchars($teacher['email']) ?></p>
           </div>
         </div>
@@ -162,7 +162,13 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
                     <?= $quiz['attempt_count'] ?>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <?= round($quiz['avg_score'], 1) ?>%
+                    <?php 
+                    if ($quiz['avg_score'] !== null) {
+                        echo round($quiz['avg_score'], 1) . '%';
+                    } else {
+                        echo '0%'; // or 'N/A' if you prefer
+                    }
+                    ?>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap space-x-2">
                     <a href="view_attempts.php?quiz_id=<?= $quiz['id'] ?>" 
