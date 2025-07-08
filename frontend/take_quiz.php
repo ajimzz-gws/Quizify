@@ -85,6 +85,52 @@ function calculateScore($userAnswers, $questions) {
   </style>
 </head>
 <body class="bg-blue-50">
+    <script>
+    // Start timer with optional time limit
+    const timeLimit = <?= json_encode($quiz['time_limit'] ?? null) ?>; // in minutes
+    let timeLeft = timeLimit ? timeLimit * 60 : null;
+    let quizEndTime = timeLimit ? new Date().getTime() + timeLimit * 60000 : null;
+
+    function updateTimer() {
+        const timerElement = document.getElementById('time-display');
+        
+        if (timeLimit) {
+            const now = new Date().getTime();
+            const distance = quizEndTime - now;
+            
+            if (distance <= 0) {
+                clearInterval(timerInterval);
+                alert("Time's up! Submitting your quiz...");
+                document.getElementById('quiz-form').submit();
+                return;
+            }
+            
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            
+            // Visual warning when 5 minutes left
+            if (distance < 300000 && !document.querySelector('.time-warning')) {
+                const warning = document.createElement('div');
+                warning.className = 'time-warning bg-yellow-100 p-2 rounded mb-4';
+                warning.textContent = '⚠️ Less than 5 minutes remaining!';
+                timerElement.parentNode.appendChild(warning);
+            }
+        } else {
+            // Unlimited time - just show elapsed time
+            seconds++;
+            timerElement.textContent = formatTime(seconds);
+        }
+    }
+
+    const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+    <?php if (!empty($quiz['time_limit'])): ?>
+        <div class="fixed top-4 right-4 bg-white p-2 rounded-lg shadow-md">
+            <span class="font-semibold">Time Remaining:</span>
+            <span id="timer-display" class="ml-2"><?= $quiz['time_limit'] ?>:00</span>
+        </div>
+    <?php endif; ?>
   <header class="bg-blue-700 text-white py-5 shadow-md">
     <div class="container mx-auto px-4">
       <h1 class="text-2xl font-bold" id="quiz-title"><?= htmlspecialchars($quiz['title']) ?></h1>
