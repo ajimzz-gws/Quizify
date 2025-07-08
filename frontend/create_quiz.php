@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = [
         'title' => $_POST['title'],
         'description' => $_POST['description'] ?? null,
+        'category' => $_POST['category'],
         'created_by' => $_SESSION['user_id'],
         'questions_json' => json_encode($questions),
         'status' => ($_POST['action'] === 'publish') ? 'published' : 'draft',
@@ -124,6 +125,19 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = {$_SESSION['user_id']
                             <input type="text" id="title" name="title" required
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                    placeholder="Enter quiz title">
+                        </div>
+
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <select id="category" name="category" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">Select a category</option>
+                                <option value="Math">Math</option>
+                                <option value="Science">Science</option>
+                                <option value="History">History</option>
+                                <option value="Language">Language</option>
+                                <option value="General">General</option>
+                            </select>
                         </div>
 
                         <div>
