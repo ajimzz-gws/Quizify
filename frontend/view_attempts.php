@@ -1,5 +1,12 @@
 <?php
 require_once 'bootstrap.php';
+// Make sure this is at the very top of bootstrap.php
+session_start();
+
+// Then check if session is active
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    die('Session initialization failed');
+}
 $auth->requireRole('teacher');
 
 // Get quiz ID from URL
@@ -7,7 +14,7 @@ $quizId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 // Fetch quiz details
 $quiz = $db->pdo->query("
-    SELECT q.*, u.name as teacher_name 
+    SELECT q.*, u.full_name as teacher_name 
     FROM quizzes q
     JOIN users u ON q.created_by = u.id
     WHERE q.id = $quizId
@@ -26,7 +33,7 @@ if ($quiz['created_by'] != $_SESSION['user_id']) {
 
 // Fetch quiz attempts
 $attempts = $db->pdo->query("
-    SELECT a.*, u.name as student_name, u.email as student_email
+    SELECT a.*, u.full_name as student_name, u.email as student_email
     FROM quiz_attempts a
     JOIN users u ON a.student_id = u.id
     WHERE a.quiz_id = $quizId
@@ -41,7 +48,6 @@ $totalAttempts = count($attempts);
 $avgScore = $totalAttempts > 0 ? 
     round(array_sum(array_column($attempts, 'score')) / $totalAttempts, 1) : 0;
 
-include '../templates/header.php';
 ?>
 
 <!DOCTYPE html>
