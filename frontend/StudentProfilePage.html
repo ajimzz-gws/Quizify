@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Profile</title>
+  <title>Student Profile</title>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +23,7 @@
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
   <div class="profile-container w-full max-w-2xl bg-white shadow-lg rounded-xl overflow-hidden p-8">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">User Profile</h1>
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Student Profile</h1>
 
     <!-- Profile Picture -->
     <div class="flex flex-col items-center mb-8">
@@ -35,7 +35,7 @@
         </label>
       </div>
       <h2 id="display-name" class="text-2xl font-semibold text-gray-800">John Doe</h2>
-      <p id="display-role" class="text-gray-600">Teacher</p>
+      <p id="display-role" class="text-gray-600">Student</p>
     </div>
 
     <!-- Form Fields -->
@@ -55,10 +55,7 @@
           <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
           <input type="tel" id="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
         </div>
-        <div>
-          <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-          <input type="date" id="dob" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
-        </div>
+       
       </div>
 
       <!-- Academic Info -->
@@ -68,13 +65,9 @@
           <label for="id_number" class="block text-sm font-medium text-gray-700">ID</label>
           <input type="text" id="id_number" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
         </div>
-        <div class="mb-4">
-          <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
-          <input type="text" id="department" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
-        </div>
-        <div>
-          <label for="classes_taught" class="block text-sm font-medium text-gray-700">Classes Taught</label>
-          <input type="text" id="classes_taught" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+         <div>
+          <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+          <input type="date" id="dob" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
         </div>
       </div>
     </div>

@@ -48,11 +48,9 @@
           <img id="sidebar-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-3 object-cover" />
           <div>
             <p class="font-semibold text-lg">Welcome, <span id="sidebar-user-name">John Doe</span>!</p>
-            <p class="text-sm opacity-90">Class: 5A</p>
+            <p class="text-sm opacity-90">Email: johndoe@example.com</p>
           </div>
         </div>
-
-        <h3 class="text-lg font-semibold mb-4">Class: 5A</h3>
 
         <nav>
           <ul>
@@ -61,22 +59,21 @@
             </li>
             <li class="mb-4">
               <div class="relative">
-                <select class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
-                  <option>Select Class</option>
-                  <option>Class A</option>
-                  <option>Class B</option>
+                <!-- Added id="classSelect" to the select dropdown -->
+                <select id="classSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
+                  <option value="">Select Class</option> <!-- Added value attribute -->
+                  <option value="5A">Class 5A</option>
+                  <option value="5B">Class 5B</option>
+                  <option value="6A">Class 6A</option>
                 </select>
               </div>
             </li>
             <li class="mb-4">
-              <div class="relative">
-                <select class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
-                  <option>Select Subject</option>
-                  <option>Mathematics</option>
-                  <option>Science</option>
-                  <option>History</option>
-                </select>
-              </div>
+              <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Quiz Library</a>
+            </li>
+            <li class="mb-4">
+              <!-- Link to createQuiz.html -->
+              <a href="createQuiz.html" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Quiz Created</a>
             </li>
           </ul>
         </nav>
@@ -88,7 +85,7 @@
           <img id="banner-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-4 object-cover" />
           <div>
             <p class="font-semibold text-blue-800 text-lg">Welcome, <span id="banner-user-name">John Doe</span>!</p>
-            <p class="text-blue-600">Class: 5A</p>
+            <p class="text-blue-600">Email: johndoe@example.com</p>
           </div>
         </div>
 
@@ -103,15 +100,9 @@
                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Grade</th>
               </tr>
             </thead>
-            <tbody>
-              <!-- Sample rows -->
-              <tr class="border-b border-gray-200">
-                <td class="py-3 px-4 text-sm text-gray-700">Mathematics</td>
-                <td class="py-3 px-4 text-sm text-gray-700">Algebra Quiz</td>
-                <td class="py-3 px-4 text-sm text-gray-700">85/100</td>
-                <td class="py-3 px-4 text-sm text-gray-700">B+</td>
-              </tr>
-              <!-- Add more rows as needed -->
+            <!-- Added id="quizTableBody" to the tbody -->
+            <tbody id="quizTableBody">
+              <!-- Quiz data will be loaded here by JavaScript -->
             </tbody>
           </table>
         </div>
@@ -119,7 +110,7 @@
     </div>
   </div>
 
-  <!-- ✅ JavaScript Logic -->
+  <!-- JavaScript Logic -->
   <script type="module" src="dashboardTeacher2.js"></script>
 </body>
 </html>
