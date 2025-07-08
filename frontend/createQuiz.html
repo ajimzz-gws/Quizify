@@ -81,6 +81,108 @@
     </div>
   </div>
 
-  <script src="createQuiz2.js"></script>
+  <script>
+    let currentStep = 1;
+    let questions = [];
+
+    function showStep(step) {
+      document.querySelectorAll('.step-content').forEach((el, i) => {
+        el.classList.toggle('hidden', i !== step - 1);
+      });
+      document.querySelectorAll('.step').forEach((el, i) => {
+        el.classList.toggle('text-[#0288d1]', i === step - 1);
+        el.classList.toggle('text-white', i !== step - 1);
+      });
+    }
+
+    function nextStep() {
+      if (currentStep === 1) {
+        const total = document.getElementById('totalQuestions').value;
+        if (!total || total < 1) {
+          alert('Please enter total number of questions.');
+          return;
+        }
+        document.getElementById('questionTracker').textContent = `0 / ${total} questions added`;
+      }
+
+      if (currentStep === 2) {
+        const total = parseInt(document.getElementById('totalQuestions').value);
+        if (questions.length < total) {
+          alert(`You need to add ${total} questions before continuing.`);
+          return;
+        }
+        renderPreview();
+      }
+
+      if (currentStep < 3) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    }
+
+    function backStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+
+    function addQuestion() {
+      const q = document.getElementById('question').value.trim();
+      const a1 = document.getElementById('answer1').value.trim();
+      const a2 = document.getElementById('answer2').value.trim();
+      const a3 = document.getElementById('answer3').value.trim();
+      const a4 = document.getElementById('answer4').value.trim();
+
+      if (!q || !a1 || !a2 || !a3 || !a4) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      questions.push({ question: q, choices: [a1, a2, a3, a4] });
+
+      document.getElementById('question').value = '';
+      document.getElementById('answer1').value = '';
+      document.getElementById('answer2').value = '';
+      document.getElementById('answer3').value = '';
+      document.getElementById('answer4').value = '';
+
+      const total = parseInt(document.getElementById('totalQuestions').value);
+      document.getElementById('questionTracker').textContent = `${questions.length} / ${total} questions added`;
+    }
+
+    function renderPreview() {
+      const preview = document.getElementById('preview');
+      preview.innerHTML = '';
+      questions.forEach((q, i) => {
+        const block = document.createElement('div');
+        block.className = 'mb-4';
+        block.innerHTML = `<strong>Q${i + 1}:</strong> ${q.question}<ul class="list-disc ml-6 mt-1">${q.choices.map(c => `<li>${c}</li>`).join('')}</ul>`;
+        preview.appendChild(block);
+      });
+    }
+
+    function saveToLocal() {
+      const data = {
+        title: document.getElementById('quiz-title').value,
+        description: document.getElementById('quiz-desc').value,
+        totalQuestions: document.getElementById('totalQuestions').value,
+        questions: questions
+      };
+      localStorage.setItem('quizDraft', JSON.stringify(data));
+      alert('Quiz saved locally!');
+    }
+
+    function publishQuiz() {
+      alert('Quiz published! (This is a placeholder — integrate with backend to save permanently.)');
+    }
+    function publishQuiz() {
+      window.location.href = 'published.html';
+    }
+
+    // Initialize first step
+    showStep(currentStep);
+  </script>
+
 </body>
 </html>

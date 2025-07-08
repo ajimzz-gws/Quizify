@@ -20,12 +20,17 @@
   <!-- Header -->
   <header class="w-full max-w-4xl p-6 rounded-t-xl shadow-lg bg-[#0288d1] text-white text-center mb-4">
     <h1 id="quiz-title" class="text-2xl sm:text-3xl font-bold">Loading quiz...</h1>
-    <p id="quiz-desc" class="text-base sm:text-lg mt-2"></p>
+    <p id="quiz-desc" class="text-base sm:text-lg mt-2">Please read the instructions before starting.</p>
+
+    <!-- Start Quiz Button -->
+    <button id="start-btn" class="mt-6 bg-white text-[#0288d1] font-semibold px-6 py-3 rounded-md shadow hover:bg-[#e0f7fa] transition">
+      Start Quiz
+    </button>
   </header>
 
   <!-- Quiz Container -->
   <div class="quiz-container bg-white p-8 rounded-b-xl shadow-lg max-w-4xl w-full">
-    <form id="quiz-form" class="space-y-8">
+    <form id="quiz-form" class="space-y-8 hidden">
       <!-- Questions will be dynamically inserted here -->
     </form>
 
@@ -35,6 +40,15 @@
 
     <div id="result" class="hidden mt-6 text-lg font-medium text-center"></div>
   </div>
+
+  <!-- Script to handle Start button -->
+  <script type="module">
+    document.getElementById('start-btn').addEventListener('click', () => {
+      document.getElementById('start-btn').classList.add('hidden');
+      document.getElementById('quiz-form').classList.remove('hidden');
+      document.getElementById('submit-btn').classList.remove('hidden');
+    });
+  </script>
 
   <script src="takeQuiz2.js" type="module"></script>
 </body>
