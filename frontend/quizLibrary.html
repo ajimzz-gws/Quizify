@@ -4,17 +4,91 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Quiz Library</title>
-  <link rel="stylesheet" href="quizLibrary1.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <h1>Available Quizzes</h1>
+<body class="bg-[#b3e5fc] text-[#333] min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-[#0288d1] text-white py-5 shadow-md text-center">
+    <h1 class="text-2xl font-bold">Quiz Library</h1>
   </header>
 
-  <main class="quiz-list" id="quiz-list">
-    <!-- Quiz cards will be inserted here -->
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 py-10">
+    <!-- Search Bar -->
+    <div class="mb-10 flex justify-center">
+      <div class="relative w-full max-w-md">
+        <input
+          type="text"
+          placeholder="Search subject..."
+          class="w-full pl-10 pr-4 py-3 rounded-lg shadow-md border border-[#b3e5fc] focus:outline-none focus:ring-2 focus:ring-[#0288d1]"
+        />
+        <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#0288d1]">
+          <i class="fas fa-search"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subject + Quizzes Row -->
+    <div class="space-y-10">
+      <!-- Subject Row -->
+      <div class="flex flex-wrap gap-6 items-stretch">
+        <!-- Subject Card -->
+        <div class="bg-white p-6 rounded-xl shadow w-full sm:w-60 flex flex-col justify-center">
+          <h2 class="text-lg font-semibold text-[#0277bd] text-center">Mathematics</h2>
+        </div>
+
+        <!-- Quiz Cards -->
+        <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Active Quiz Card -->
+          <div onclick="window.location.href='takeQuiz.html'" class="cursor-pointer bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-[#0277bd] mb-2">Algebra Basics</h3>
+            <p class="text-sm text-gray-700">Test your understanding of algebraic expressions.</p>
+          </div>
+
+          <!-- Static Quiz Cards -->
+          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-[#0277bd] mb-2">Geometry</h3>
+            <p class="text-sm text-gray-700">Explore shapes, angles, and theorems.</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-[#0277bd] mb-2">Probability</h3>
+            <p class="text-sm text-gray-700">How likely is it to rain tomorrow?</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Another Subject Row -->
+      <div class="flex flex-wrap gap-6 items-stretch">
+        <!-- Subject Card -->
+        <div class="bg-white p-6 rounded-xl shadow w-full sm:w-60 flex flex-col justify-center">
+          <h2 class="text-lg font-semibold text-[#0277bd] text-center">Science</h2>
+        </div>
+
+        <!-- Quiz Cards -->
+        <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-[#0277bd] mb-2">Physics Fundamentals</h3>
+            <p class="text-sm text-gray-700">Newton’s laws and motion concepts.</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-[#0277bd] mb-2">Chemistry Basics</h3>
+            <p class="text-sm text-gray-700">Atoms, molecules, and reactions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <script src="quizLibrary2.js" type="module"></script>
 </body>
 </html>
