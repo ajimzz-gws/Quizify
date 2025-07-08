@@ -31,22 +31,28 @@ header {
 .question-block h3 {
   margin-bottom: 10px;
   color: #0277bd;
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 /* Choices */
 .choices label {
-  display: block;
-  margin-bottom: 8px;
-  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px 14px;
   background: #f0f9ff;
   border: 1px solid #b3e5fc;
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
 }
 
 .choices input[type="radio"] {
-  margin-right: 10px;
+  margin-right: 12px;
+  accent-color: #0288d1;
+  transform: scale(1.1);
 }
 
 /* Hover and selected state */
@@ -62,6 +68,12 @@ header {
   border-radius: 4px;
 }
 
+/* Focus state for accessibility */
+.choices input[type="radio"]:focus-visible {
+  outline: 2px solid #0288d1;
+  outline-offset: 2px;
+}
+
 /* Submit button */
 #submit-btn {
   padding: 12px 24px;
@@ -72,12 +84,13 @@ header {
   font-size: 16px;
   cursor: pointer;
   display: block;
-  margin: 20px auto;
-  transition: background 0.3s ease;
+  margin: 20px auto 0;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 #submit-btn:hover {
   background: #0277bd;
+  transform: translateY(-1px);
 }
 
 /* Result message */
@@ -108,7 +121,17 @@ header {
     margin: 20px;
   }
 
+  .question-block h3 {
+    font-size: 1rem;
+  }
+
+  .choices label {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+
   #submit-btn {
     width: 100%;
+    font-size: 1rem;
   }
 }

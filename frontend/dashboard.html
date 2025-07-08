@@ -3,134 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quizify</title>
-  <link rel="stylesheet" href="dashboard1.css"/>
+  <title>Quizify Dashboard</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
+<body class="bg-[#b3e5fc] text-gray-800 px-4 sm:px-6">
 
-<body>
-  <header>
-    <div class="logo">
-      <img src="images/quizify2.png" alt="Quizify Logo">
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-[#0288d1] text-white shadow-md z-50 px-4 sm:px-6 py-4">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <img src="images/quizify2.png" alt="Quizify Logo" class="h-14 object-contain -mt-1" />
+      </div>
+
+      <!-- Navigation -->
+      <nav id="navbar" class="w-full sm:w-auto">
+        <ul class="flex flex-col sm:flex-row gap-2 sm:gap-6 items-start sm:items-center font-semibold text-sm sm:text-base">
+          <li class="relative group w-full sm:w-auto">
+            <div class="px-4 py-2 rounded-md hover:bg-white/20 transition cursor-pointer w-full sm:w-auto">Dashboard ▾</div>
+            <ul class="absolute left-0 top-full mt-1 bg-[#0288d1] rounded-b-xl shadow-lg w-52 z-50 hidden group-hover:flex flex-col">
+              <li><a href="dashboardStudent.html" class="block px-5 py-3 hover:bg-white/20 border-l-4 border-transparent hover:border-white transition">Dashboard Student</a></li>
+              <li><a href="dashboardTeachers.html" class="block px-5 py-3 hover:bg-white/20 border-l-4 border-transparent hover:border-white transition">Dashboard Teacher</a></li>
+            </ul>
+          </li>
+          <li><a href="myQuizzes.html" class="px-4 py-2 rounded-md hover:bg-white/20 transition w-full sm:w-auto">My Quizzes</a></li>
+          <li><a href="quizResult.html" class="px-4 py-2 rounded-md hover:bg-white/20 transition w-full sm:w-auto">Result</a></li>
+          <li><a href="login.html" class="px-4 py-2 rounded-md hover:bg-white/20 transition w-full sm:w-auto">Logout</a></li>
+        </ul>
+      </nav>
     </div>
-
-    <nav id="navbar">
-      <ul>
-        <li class="dropdown">
-          <a href="javascript:void(0)" onclick="toggleDropdown()" class="dropdown-toggle">Dashboard ▾</a>
-          <ul id="dashboardDropdown" class="dropdown-menu">
-            <li><a href="#" id="dashboard-student">Dashboard Student</a></li>
-            <li><a href="#" id="dashboard-teacher">Dashboard Teacher</a></li>
-          </ul>
-        </li>
-        <li><a href="#" id="my-quizzes">My Quizzes</a></li>
-        <li><a href="#" id="result-link">Result</a></li>
-        <li><a href="#" id="logout-btn">Logout</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <main>
-    <h2>Welcome Back!</h2>
+  <!-- Main Content -->
+  <main class="pt-40 sm:pt-28 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-center text-[#0288d1] mb-10">Welcome Back!</h2>
+
     <section id="dashboard">
-      <div class="dash-container">
-        <div class="total"><h3>Total Quizzes</h3><p>Loading...</p></div>
-        <div class="attempts"><h3>Attempts</h3><p>Loading...</p></div>
-        <div class="avg"><h3>Average Score</h3><p>Loading...</p></div>
+      <div class="flex flex-wrap justify-center gap-6 sm:gap-8 px-2 sm:px-4">
+        <div class="bg-gradient-to-br from-[#4fc3f7] to-[#29b6f6] text-white w-40 sm:w-48 h-40 sm:h-48 rounded-2xl shadow-lg flex flex-col items-center justify-center text-center transition transform hover:-translate-y-2 hover:shadow-2xl">
+          <h3 class="text-base sm:text-lg font-semibold mb-2">Total Quizzes</h3>
+          <p class="text-xl sm:text-2xl font-bold">Loading...</p>
+        </div>
+        <div class="bg-gradient-to-br from-[#4fc3f7] to-[#29b6f6] text-white w-40 sm:w-48 h-40 sm:h-48 rounded-2xl shadow-lg flex flex-col items-center justify-center text-center transition transform hover:-translate-y-2 hover:shadow-2xl">
+          <h3 class="text-base sm:text-lg font-semibold mb-2">Attempts</h3>
+          <p class="text-xl sm:text-2xl font-bold">Loading...</p>
+        </div>
+        <div class="bg-gradient-to-br from-[#4fc3f7] to-[#29b6f6] text-white w-40 sm:w-48 h-40 sm:h-48 rounded-2xl shadow-lg flex flex-col items-center justify-center text-center transition transform hover:-translate-y-2 hover:shadow-2xl">
+          <h3 class="text-base sm:text-lg font-semibold mb-2">Average Score</h3>
+          <p class="text-xl sm:text-2xl font-bold">Loading...</p>
+        </div>
       </div>
     </section>
-    <h2>Recent Activity:</h2> 
+
+    <h2 class="text-2xl font-bold text-center text-[#0288d1] mt-16">Recent Activity:</h2>
+    <!-- Add recent activity content here -->
   </main>
 
-  <script>
-    // Function to toggle the dashboard dropdown menu
-    function toggleDropdown() {
-      const dropdown = document.getElementById("dashboardDropdown");
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-      // --- Dashboard Navigation & Role Switching ---
-      const dashboardStudentLink = document.getElementById("dashboard-student");
-      const dashboardTeacherLink = document.getElementById("dashboard-teacher");
-
-      if (dashboardStudentLink) {
-        dashboardStudentLink.addEventListener("click", function () {
-          window.location.href = "dashboardStudent.html";
-        });
-      }
-
-      if (dashboardTeacherLink) {
-        dashboardTeacherLink.addEventListener("click", function () {
-          window.location.href = "dashboardTeachers.html";
-        });
-      }
-
-      // --- Header Navigation Buttons ---
-      const myQuizzesLink = document.getElementById("my-quizzes");
-      const resultLink = document.getElementById("result-link");
-      const logoutButton = document.getElementById("logout-btn");
-
-      if (myQuizzesLink) {
-        myQuizzesLink.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.location.href = "myQuizzes.html";
-        });
-      }
-
-      if (resultLink) {
-        resultLink.addEventListener("click", function (e) {
-          e.preventDefault();
-          window.location.href = "quizResult.html";
-        });
-      }
-
-      if (logoutButton) {
-        logoutButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          // Optional: clear session or token here before redirecting
-          alert("You have been logged out.");
-          window.location.href = "login.html";
-        });
-      }
-
-      // --- Fetch Dashboard Data for Student ---
-      const totalQuizzesDiv = document.querySelector(".total");
-      const attemptsDiv = document.querySelector(".attempts");
-      const averageScoreDiv = document.querySelector(".avg");
-
-      if (totalQuizzesDiv && attemptsDiv && averageScoreDiv) {
-        fetch("http://localhost:8000/api/dashboard/student")
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-          })
-          .then(data => {
-            totalQuizzesDiv.innerHTML = `<h3>Total Quizzes</h3><p>${data.total_quizzes}</p>`;
-            attemptsDiv.innerHTML = `<h3>Attempts</h3><p>${data.attempts}</p>`;
-            averageScoreDiv.innerHTML = `<h3>Average Score</h3><p>${data.average_score}%</p>`;
-          })
-          .catch(error => {
-            console.error("Failed to load dashboard data:", error);
-            // Optionally, update the UI to show an error message
-            totalQuizzesDiv.innerHTML = `<h3>Total Quizzes</h3><p>Error</p>`;
-            attemptsDiv.innerHTML = `<h3>Attempts</h3><p>Error</p>`;
-            averageScoreDiv.innerHTML = `<h3>Average Score</h3><p>Error</p>`;
-          });
-      } else {
-        console.warn("One or more dashboard data elements not found.");
-      }
-
-      // --- Close dropdown when clicking outside ---
-      document.addEventListener("click", function (event) {
-        const toggle = document.querySelector(".dropdown-toggle");
-        const menu = document.getElementById("dashboardDropdown");
-        if (toggle && menu && !toggle.contains(event.target) && !menu.contains(event.target)) {
-          menu.style.display = "none";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
