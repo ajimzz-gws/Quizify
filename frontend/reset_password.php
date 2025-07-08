@@ -1,5 +1,5 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
 
 $token = $_GET['token'] ?? '';
 
