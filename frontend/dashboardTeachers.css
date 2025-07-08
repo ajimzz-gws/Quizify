@@ -1,132 +1,19 @@
-/* Custom CSS for background shapes and specific styling not easily done with Tailwind */
-
-/* Define custom colors if needed, though Tailwind's palette is extensive */
-:root {
-    --blue-dark: #1e3a8a; /* A dark blue for sidebar */
-    --blue-medium: #2563eb; /* A medium blue */
-    --blue-light: #bfdbfe; /* A light blue */
-}
-
+/* Font and background override */
 body {
-    /* Ensure the body takes full height and uses flexbox for centering */
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f3f4f6; /* Light gray background for the page */
-    font-family: 'Inter', sans-serif; /* Ensure Inter font is applied */
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
 }
 
-.dashboard-container {
-    /* Main container styling */
-    background-color: #ffffff; /* White background for the dashboard */
-    border-radius: 1rem; /* Rounded corners */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Shadow for depth */
-    position: relative; /* For absolute positioning of background shapes */
-    display: flex;
-    flex-direction: column; /* Default to column for small screens */
-    width: 100%;
-    max-width: 1200px; /* Max width for larger screens */
-    min-height: 700px; /* Minimum height for the dashboard */
-    overflow: hidden; /* Hide overflow from shapes */
-}
-
-/* Header styling */
-header {
-    background-color: #ffffff; /* Solid white background */
-    border-bottom: 1px solid #e5e7eb; /* Light border at the bottom */
-    padding: 1rem 1.5rem; /* Padding for the header */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow */
-    z-index: 20; /* Ensure header is above other content */
-    border-top-left-radius: 1rem; /* Rounded top-left */
-    border-top-right-radius: 1rem; /* Rounded top-right */
-}
-
-/* Sidebar styling */
-aside {
-    background-color: var(--blue-dark); /* Dark blue for sidebar */
-    color: white;
-    padding: 1.5rem;
-    border-bottom-left-radius: 1rem; /* Rounded bottom-left for sidebar */
-}
-
-/* Adjust main content and sidebar for larger screens */
-@media (min-width: 1024px) {
-    .dashboard-container {
-        flex-direction: row; /* Row layout for larger screens */
-    }
-
-    aside {
-        width: 256px; /* Fixed width for sidebar on large screens */
-        min-height: 100%; /* Ensure sidebar takes full height */
-        border-bottom-left-radius: 1rem; /* Rounded bottom-left for sidebar */
-        border-top-left-radius: 0; /* No rounded top-left for sidebar on desktop */
-    }
-
-    main {
-        flex-grow: 1; /* Main content takes remaining space */
-        border-bottom-right-radius: 1rem; /* Rounded bottom-right for main content */
-    }
-}
-
-/* Adjustments for smaller screens */
-@media (max-width: 1023px) {
-    .dashboard-container {
-        border-radius: 1rem; /* Rounded corners for the whole container */
-    }
-    header {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-    }
-    aside {
-        border-bottom-left-radius: 0; /* No rounded corner for sidebar bottom left on small screens */
-        border-bottom-right-radius: 0; /* No rounded corner for sidebar bottom right on small screens */
-        border-right: none; /* No vertical border on small screens */
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Horizontal border below sidebar */
-        padding-bottom: 1.5rem;
-    }
-    main {
-        border-top-left-radius: 0; /* No rounded corner for main top left */
-        border-bottom-right-radius: 1rem; /* Rounded corner for main bottom right */
-        border-bottom-left-radius: 1rem; /* Rounded corner for main bottom left */
-    }
-    .flex-grow {
-        min-height: 400px; /* Ensure main content has some height on small screens */
-    }
-}
-
-/* Styling for select dropdowns */
+/* Custom select arrow */
 select {
-    -webkit-appearance: none; /* Remove default arrow on WebKit browsers */
-    -moz-appearance: none; /* Remove default arrow on Mozilla browsers */
-    appearance: none; /* Remove default arrow */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M9.293%2012.95l.707.707L15.657%208l-1.414-1.414L10%2010.828%205.757%206.586%204.343%208z%22%2F%3E%3C%2Fsvg%3E'); /* Custom white arrow */
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 0.65em auto;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M9.293%2012.95l.707.707L15.657%208l-1.414-1.414L10%2010.828%205.757%206.586%204.343%208z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.65em auto;
 }
 
-/* Table styling */
-table {
-    width: 100%;
-    border-collapse: collapse; /* Collapse borders between cells */
-}
-
-th, td {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    border-bottom: 1px solid #e5e7eb; /* Light border for rows */
-}
-
-th {
-    background-color: #f9fafb; /* Light background for table headers */
-    font-weight: 600;
-    color: #4b5563;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-}
-
+/* Optional: table row cleanup */
 tbody tr:last-child td {
-    border-bottom: none; /* No border for the last row */
+  border-bottom: none;
 }

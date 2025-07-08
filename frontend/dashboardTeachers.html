@@ -7,7 +7,6 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
@@ -18,22 +17,18 @@
   </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-  <div class="dashboard-container relative w-full max-w-6xl bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+<body class="bg-white min-h-screen flex items-center justify-center p-4">
+  <div class="w-full max-w-6xl bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
 
     <!-- Header -->
-    <header class="p-4 bg-white flex justify-between items-center z-10 border-b border-gray-200">
-      <h1 class="text-2xl font-bold text-gray-800">DASHBOARD TEACHER</h1>
-
-      <div class="relative group">
-
-        <div class="logo flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition duration-300 cursor-pointer">
+    <header class="p-4 bg-white flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 gap-4">
+      <h1 class="text-xl sm:text-2xl font-bold text-gray-800">DASHBOARD TEACHER</h1>
+      <div class="relative group self-end sm:self-auto">
+        <div class="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition cursor-pointer">
           <img src="images/quzify4.png" alt="Quizify Logo" class="h-10" />
           <i class="fas fa-caret-down text-gray-600"></i>
         </div>
-
-        <!-- ✅ Dropdown menu with correct IDs -->
-        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
+        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-10">
           <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
           <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
         </div>
@@ -41,9 +36,9 @@
     </header>
 
     <!-- Main Content -->
-    <div class="flex flex-grow">
+    <div class="flex flex-col lg:flex-row flex-grow">
       <!-- Sidebar -->
-      <aside class="w-full lg:w-64 bg-blue-700 p-6 flex-shrink-0 text-white">
+      <aside class="w-full lg:w-64 bg-blue-700 p-6 text-white">
         <div class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
           <img id="sidebar-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-3 object-cover" />
           <div>
@@ -58,21 +53,17 @@
               <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Past Quiz</a>
             </li>
             <li class="mb-4">
-              <div class="relative">
-                <!-- Added id="classSelect" to the select dropdown -->
-                <select id="classSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
-                  <option value="">Select Class</option> <!-- Added value attribute -->
-                  <option value="5A">Class 5A</option>
-                  <option value="5B">Class 5B</option>
-                  <option value="6A">Class 6A</option>
-                </select>
-              </div>
+              <select id="classSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
+                <option value="">Select Class</option>
+                <option value="5A">Class 5A</option>
+                <option value="5B">Class 5B</option>
+                <option value="6A">Class 6A</option>
+              </select>
             </li>
             <li class="mb-4">
               <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Quiz Library</a>
             </li>
             <li class="mb-4">
-              <!-- Link to createQuiz.html -->
               <a href="createQuiz.html" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Quiz Created</a>
             </li>
           </ul>
@@ -80,9 +71,9 @@
       </aside>
 
       <!-- Main Area -->
-      <main class="flex-grow p-6 bg-white rounded-br-xl">
-        <div class="bg-blue-100 p-4 rounded-lg mb-8 flex items-center">
-          <img id="banner-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-4 object-cover" />
+      <main class="flex-grow p-6 bg-white">
+        <div class="bg-blue-100 p-4 rounded-lg mb-8 flex flex-col sm:flex-row items-start sm:items-center">
+          <img id="banner-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-4 mb-2 sm:mb-0 object-cover" />
           <div>
             <p class="font-semibold text-blue-800 text-lg">Welcome, <span id="banner-user-name">John Doe</span>!</p>
             <p class="text-blue-600">Email: johndoe@example.com</p>
@@ -97,10 +88,9 @@
                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tl-lg">Subject</th>
                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Quiz Name</th>
                 <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Score</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Grade</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tr-lg">Grade</th>
               </tr>
             </thead>
-            <!-- Added id="quizTableBody" to the tbody -->
             <tbody id="quizTableBody">
               <!-- Quiz data will be loaded here by JavaScript -->
             </tbody>
