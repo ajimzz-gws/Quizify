@@ -3,7 +3,7 @@ session_start();
 require_once 'database.php';
 
 class DB {
-    private $pdo;
+    public $pdo;
     
     public function __construct() {
         $this->pdo = new PDO(
