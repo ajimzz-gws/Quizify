@@ -1,5 +1,5 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
 $auth->requireRole('teacher');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
