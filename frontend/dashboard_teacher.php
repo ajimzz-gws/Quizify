@@ -162,7 +162,13 @@ $teacherData = isset($teacher['teacher_data']) ? json_decode($teacher['teacher_d
                     <?= $quiz['attempt_count'] ?>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <?= round($quiz['avg_score'], 1) ?>%
+                    <?php 
+                    if ($quiz['avg_score'] !== null) {
+                        echo round($quiz['avg_score'], 1) . '%';
+                    } else {
+                        echo '0%'; // or 'N/A' if you prefer
+                    }
+                    ?>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap space-x-2">
                     <a href="view_attempts.php?quiz_id=<?= $quiz['id'] ?>" 
