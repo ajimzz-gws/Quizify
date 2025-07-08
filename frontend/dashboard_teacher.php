@@ -16,8 +16,10 @@ $quizzes = $db->pdo->query("
 ")->fetchAll(PDO::FETCH_ASSOC);
 
 $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO::FETCH_ASSOC);
-?>
 
+// Decode teacher_data JSON
+$teacherData = isset($teacher['teacher_data']) ? json_decode($teacher['teacher_data'], true) : [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,24 +35,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-image: url('https://images.unsplash.com/photo-1632820449134-c0834d0c4b86?auto=format&fit=crop&w=1950&q=80');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .overlay {
-      background-color: rgba(30, 64, 175, 0.6); /* Blue overlay */
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .content-wrapper {
-      position: relative;
-      z-index: 10;
+      background-color: #f9fafb;
     }
   </style>
 
@@ -64,12 +49,9 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
 </head>
 
 <body>
-  <!-- Overlay -->
-  <div class="overlay"></div>
-
-  <div class="content-wrapper flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen">
     <!-- Header -->
-    <header class="bg-white bg-opacity-90 shadow py-4 px-6 flex justify-between items-center">
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-blue-600">Quizify Teacher Dashboard</h1>
       <div class="relative">
         <button id="profileDropdownBtn" class="flex items-center space-x-2 focus:outline-none">
@@ -92,8 +74,8 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
           <img src="<?= htmlspecialchars($teacher['profile_image'] ?? 'https://placehold.co/128x128/cccccc/333333?text=Teacher') ?>" 
                alt="Profile" class="w-12 h-12 rounded-full mr-3 object-cover">
           <div>
-            <p class="font-semibold"><?= htmlspecialchars($teacher['full_name']) ?></p>
-            <p class="text-sm opacity-90"><?= htmlspecialchars($teacher['email']) ?></p>
+            <p class="font-semibold"><?= htmlspecialchars($teacherData['name'] ?? 'No Name') ?></p>
+            <p class="text-sm opacity-90"><?= htmlspecialchars($teacherData['email'] ?? 'No Email') ?></p>
           </div>
         </div>
         
@@ -128,7 +110,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
       </aside>
 
       <!-- Main Content -->
-      <main class="flex-1 p-8 bg-white bg-opacity-90">
+      <main class="flex-1 p-8">
         <!-- Stats -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div class="bg-white rounded-lg shadow p-6">
