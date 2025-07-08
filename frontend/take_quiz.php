@@ -1,5 +1,5 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
 $auth->requireLogin();
 
 $quizId = $_GET['id'] ?? null;

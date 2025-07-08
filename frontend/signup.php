@@ -87,13 +87,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="input-box">
             <label for="role"><b>Account Type</b></label>
             <select name="role" required>
+                <option value="" disabled selected>-- Select Account Type --</option>
                 <option value="student">Student</option>
                 <option value="teacher">Teacher</option>
             </select>
         </div>
 
         <button type="submit" class="signup">Sign Up</button>
-        <a href="login.php" class="btn">Already have an account? Login</a>
+        <a href="login.html" class="btn">Already have an account? Login</a>
     </form>
 </div>
+</body>
+</html>
 

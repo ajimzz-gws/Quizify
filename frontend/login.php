@@ -1,5 +1,5 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -16,22 +16,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user_role'] = $user['role'];
         $_SESSION['user_name'] = $user['full_name'];
 
-        if ($remember) {
-            $token = bin2hex(random_bytes(32));
-            $expires = date('Y-m-d H:i:s', time() + 30 * 24 * 60 * 60); // 30 days
+        // if ($remember) {
+        //     $token = bin2hex(random_bytes(32));
+        //     $expires = date('Y-m-d H:i:s', time() + 30 * 24 * 60 * 60); // 30 days
             
-            $db->pdo->prepare(
-                "UPDATE users SET remember_token = ?, remember_expires = ? WHERE id = ?"
-            )->execute([$token, $expires, $user['id']]);
+        //     $db->pdo->prepare(
+        //         "UPDATE users SET remember_token = ?, remember_expires = ? WHERE id = ?"
+        //     )->execute([$token, $expires, $user['id']]);
 
-            setcookie('remember', $token, time() + 30 * 24 * 60 * 60, '/', '', true, true);
-        }
+        //     setcookie('remember', $token, time() + 30 * 24 * 60 * 60, '/', '', true, true);
+        // }
 
         header("Location: " . ($user['role'] === 'teacher' ? 'dashboard_teacher.php' : 'dashboard_student.php'));
         exit;
     }
 
-    header("Location: login.php?error=Invalid email or password");
+    header("Location: login.html?error=Invalid email or password");
     exit;
 }
 

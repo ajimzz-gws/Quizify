@@ -1,5 +1,5 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
@@ -26,24 +26,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-include '../templates/header.php';
 ?>
-
-<div class="wrapper">
-    <form method="post">
-        <h1>Forgot Password</h1>
-        
-        <?php if (isset($_GET['success'])): ?>
-            <div class="success">If an account exists, we've sent a reset link</div>
-        <?php endif; ?>
-        
-        <div class="input-box">
-            <input type="email" name="email" placeholder="Enter your email" required />
-        </div>
-        
-        <button type="submit" class="btn">Send Reset Link</button>
-        <a href="login.php" class="btn">Back to Login</a>
-    </form>
-</div>
-
-<?php include '../templates/footer.php'; ?>
+<DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forgot Password - Quizify</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body class="bg-gray-50 min-h-screen">
+            <div class="wrapper">
+                <form method="post">
+                    <h1>Forgot Password</h1>
+                    
+                    <?php if (isset($_GET['success'])): ?>
+                        <div class="success">If an account exists, we've sent a reset link</div>
+                    <?php endif; ?>
+                    
+                    <div class="input-box">
+                        <input type="email" name="email" placeholder="Enter your email" required />
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Reset Link</button>
+                    <a href="login.php" class="btn">Back to Login</a>
+                </form>
+            </div>
+    </body>
+</html>

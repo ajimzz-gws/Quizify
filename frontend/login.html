@@ -44,7 +44,12 @@
     </form>
   </div>
 
-  <!-- Remove the JavaScript submit handler since we're using standard form submission -->
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('error')) {
+        alert(params.get('error'));
+    }
+</script>
 </body>
 
 </html>

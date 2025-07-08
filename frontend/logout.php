@@ -1,5 +1,5 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
 
 // Clear session
 session_unset();
@@ -10,5 +10,5 @@ if (isset($_COOKIE['remember'])) {
     setcookie('remember', '', time() - 3600, '/');
 }
 
-header("Location: login.php");
+header("Location: login.html");
 exit;

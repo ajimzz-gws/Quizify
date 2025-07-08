@@ -1,5 +1,7 @@
 <?php
-require_once '../app/bootstrap.php';
+require_once 'bootstrap.php';
+
+$auth->preventBackButton();
 $auth->requireRole('teacher');
 
 // Get teacher's quizzes and stats
@@ -13,49 +15,190 @@ $quizzes = $db->pdo->query("
     ORDER BY q.created_at DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-include '../templates/header.php';
+// Get teacher profile
+$teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
-<h1>Teacher Dashboard</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - Quizify</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 
-<div class="teacher-stats">
-    <div class="stat-card">
-        <h3><?= count($quizzes) ?></h3>
-        <p>Quizzes Created</p>
+  <script>
+    window.addEventListener("pageshow", function(event) {
+        if (event.persisted) {
+            // Page was loaded from back-forward cache (bfcache)
+            window.location.reload();
+        }
+    });
+</script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+  <div class="flex flex-col min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">Quizify Teacher Dashboard</h1>
+      <div class="relative">
+        <button id="profileDropdownBtn" class="flex items-center space-x-2 focus:outline-none">
+          <img src="<?= htmlspecialchars($teacher['profile_image'] ?? 'https://placehold.co/128x128/cccccc/333333?text=Teacher') ?>" 
+               alt="Profile" class="w-10 h-10 rounded-full object-cover">
+          <i class="fas fa-caret-down text-gray-600"></i>
+        </button>
+        <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
+          <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+          <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex flex-1">
+      <!-- Sidebar -->
+      <aside class="w-64 bg-blue-700 text-white p-6">
+        <div class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
+          <img src="<?= htmlspecialchars($teacher['profile_image'] ?? 'https://placehold.co/128x128/cccccc/333333?text=Teacher') ?>" 
+               alt="Profile" class="w-12 h-12 rounded-full mr-3 object-cover">
+          <div>
+            <p class="font-semibold"><?= htmlspecialchars($teacher['name']) ?></p>
+            <p class="text-sm opacity-90"><?= htmlspecialchars($teacher['email']) ?></p>
+          </div>
+        </div>
+        
+        <nav>
+          <ul class="space-y-3">
+            <li>
+              <a href="dashboard.php" class="flex items-center space-x-2 py-2 px-3 bg-blue-600 rounded-md">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="quiz_library.php" class="flex items-center space-x-2 py-2 px-3 hover:bg-blue-600 rounded-md">
+                <i class="fas fa-book"></i>
+                <span>Quiz Library</span>
+              </a>
+            </li>
+            <li>
+              <a href="create_quiz.php" class="flex items-center space-x-2 py-2 px-3 hover:bg-blue-600 rounded-md">
+                <i class="fas fa-plus-circle"></i>
+                <span>Create Quiz</span>
+              </a>
+            </li>
+            <li>
+              <a href="reports.php" class="flex items-center space-x-2 py-2 px-3 hover:bg-blue-600 rounded-md">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 p-8">
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-3xl font-bold text-blue-600"><?= count($quizzes) ?></h3>
+            <p class="text-gray-600">Quizzes Created</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-3xl font-bold text-blue-600"><?= array_sum(array_column($quizzes, 'attempt_count')) ?></h3>
+            <p class="text-gray-600">Total Attempts</p>
+          </div>
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-3xl font-bold text-blue-600">
+              <?= count($quizzes) > 0 ? round(array_sum(array_column($quizzes, 'avg_score')) / count($quizzes), 1) : '0' ?>%
+            </h3>
+            <p class="text-gray-600">Average Score</p>
+          </div>
+        </div>
+
+        <!-- Quizzes Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-xl font-semibold text-gray-800">Your Quizzes</h2>
+            <a href="create_quiz.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
+              <i class="fas fa-plus mr-2"></i>Create New Quiz
+            </a>
+          </div>
+          
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Questions</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Attempts</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg. Score</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <?php foreach ($quizzes as $quiz): ?>
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="font-medium text-gray-900"><?= htmlspecialchars($quiz['title']) ?></div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <?= count(json_decode($quiz['questions_json'])) ?>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <?= $quiz['attempt_count'] ?>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <?= round($quiz['avg_score'], 1) ?>%
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap space-x-2">
+                    <a href="view_attempts.php?quiz_id=<?= $quiz['id'] ?>" 
+                       class="text-blue-600 hover:text-blue-800">
+                      <i class="fas fa-eye mr-1"></i>View
+                    </a>
+                    <a href="edit_quiz.php?id=<?= $quiz['id'] ?>" 
+                       class="text-green-600 hover:text-green-800">
+                      <i class="fas fa-edit mr-1"></i>Edit
+                    </a>
+                  </td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
     </div>
-    <div class="stat-card">
-        <h3><?= array_sum(array_column($quizzes, 'attempt_count')) ?></h3>
-        <p>Total Attempts</p>
-    </div>
-</div>
+  </div>
 
-<h2>Your Quizzes</h2>
-<table class="quiz-table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Questions</th>
-            <th>Attempts</th>
-            <th>Avg. Score</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($quizzes as $quiz): ?>
-        <tr>
-            <td><?= htmlspecialchars($quiz['title']) ?></td>
-            <td><?= count(json_decode($quiz['questions_json'])) ?></td>
-            <td><?= $quiz['attempt_count'] ?></td>
-            <td><?= round($quiz['avg_score'], 1) ?></td>
-            <td>
-                <a href="view_attempts.php?quiz_id=<?= $quiz['id'] ?>">View Attempts</a>
-                <a href="edit_quiz.php?id=<?= $quiz['id'] ?>">Edit</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+  <script>
+    // Toggle profile dropdown
+    document.getElementById('profileDropdownBtn').addEventListener('click', function() {
+      document.getElementById('profileDropdown').classList.toggle('hidden');
+    });
 
-<a href="create_quiz.php" class="btn">Create New Quiz</a>
-
-<?php include '../templates/footer.php'; ?>
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdown = document.getElementById('profileDropdown');
+      const button = document.getElementById('profileDropdownBtn');
+      
+      if (!button.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
