@@ -1,53 +1,58 @@
-main,
-.dash-container {
-  margin-left: 0;
-  transition: margin-left 0.3s ease;
-}
-
-/* Header */
+/* General Body & Main Layout */
 body {
   line-height: 1.6;
   scroll-behavior: smooth;
-  background: #b3e5fc;
+  background: #b3e5fc; /* Soft sky blue background */
   color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font */
+  margin: 0; /* Remove default body margin */
 }
-header{
+
+main {
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  padding-top: 100px; /* Space for fixed header */
+}
+
+/* Header */
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #0288d1;
+  background: #0288d1; /* Primary blue for header */
   color: white;
-  padding: 15px 20px;
+  padding: 15px 25px; /* More balanced padding */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  height: 80px; /* Fixed height */
-  overflow: visible;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Softer, slightly larger shadow */
+  height: 80px;
+  box-sizing: border-box; /* Include padding in height */
 }
 
 /* Logo */
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px; /* Slightly reduced gap */
   height: 100%;
-  overflow: visible;
 }
 .logo img {
-  height: 50px; /* Bigger than header */
+  height: 60px; /* Slightly larger logo */
   width: auto;
   object-fit: contain;
-  margin-top: -10px; /* Adjust vertical alignment */
+  margin-top: -8px; /* Adjusted vertical alignment */
 }
 
+/* Navigation Bar */
 #navbar ul {
   display: flex;
-  gap: 30px;
+  gap: 35px; /* Increased space between menu items */
   list-style: none;
   margin-right: 30px;
+  padding: 0; /* Remove default ul padding */
 }
 
 #navbar ul li {
@@ -57,24 +62,32 @@ header{
 #navbar ul li a {
   text-decoration: none;
   color: white;
-  font-size: 18px;
-  font-weight: bold;
-  padding: 8px 12px;
+  font-size: 17px; /* Slightly smaller font for consistency */
+  font-weight: 600; /* Medium bold */
+  padding: 10px 15px; /* More padding for click area */
   display: block;
+  border-radius: 6px; /* Slightly rounded corners */
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-/* Dropdown Menu (Sidebar Style but Shorter) */
+#navbar ul li a:hover {
+  background: rgba(255, 255, 255, 0.2); /* Lighter hover effect */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Dropdown Menu (Dashboard) */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 80px; /* below header */
+  top: 75px; /* Adjust to sit just below header */
   left: 0;
-  width: 220px;
-  background-color: #0288d1;
-  border-radius: 0 0 12px 12px;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 220px; /* Consistent width */
+  background-color: #0288d1; /* Same as header background */
+  border-radius: 0 0 12px 12px; /* Bottom rounded corners only */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* More prominent shadow for dropdown */
   padding: 10px 0;
   z-index: 1001;
+  min-width: max-content; /* Ensure content fits */
 }
 
 .dropdown-menu li a {
@@ -84,79 +97,154 @@ header{
   font-weight: 500;
   text-decoration: none;
   transition: background 0.2s ease;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 .dropdown-menu li a:hover {
   background-color: rgba(255, 255, 255, 0.15);
-  border-left: 4px solid white;
+  border-left: 5px solid white; /* Thicker, more visible border */
+  padding-left: 15px; /* Adjust padding due to border */
 }
 
-/* Optional: style the toggle button */
+/* Dropdown Toggle Button */
 .dropdown-toggle {
   background: none;
   border: none;
   color: white;
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 600;
   cursor: pointer;
-  padding: 8px 12px;
-  font-family: inherit; 
+  padding: 10px 15px;
+  font-family: inherit;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.1s ease;
 }
 
-/* Show the sidebar-style dropdown on hover */
+.dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Show dropdown on hover (CSS only for demonstration) */
 .dropdown:hover .dropdown-menu {
-  display: flex;
+  display: block; /* Change from flex to block for vertical stacking */
 }
 
-/* Dashboard Container */
+/* Dashboard Container & Cards */
+h2 {
+  text-align: center;
+  color: #0288d1;
+  margin-top: 40px;
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
 .dash-container {
-  margin-top: 120px;
+  margin-top: 50px; /* Adjusted margin */
   display: flex;
-  justify-content: space-around;
+  justify-content: center; /* Center items when less than full row */
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 40px;
+  gap: 2rem; /* Increased gap between cards */
+  padding: 20px 40px; /* Adjusted padding */
 }
 
 .dash-container > div {
-  background: linear-gradient(to bottom right, #42a5f5, #1e88e5);
+  background: linear-gradient(to bottom right, #4fc3f7, #29b6f6); /* Softer blue gradient */
   color: white;
-  padding: 30px;
-  border-radius: 16px;
-  width: 150px;
-  height: 150px;
-  font-size: 20px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  padding: 25px; /* Slightly less padding, centered content */
+  border-radius: 20px; /* More rounded corners */
+  width: 200px; /* Slightly larger cards */
+  height: 200px;
+  display: flex; /* Use flexbox for internal centering */
+  flex-direction: column; /* Stack h3 and p vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  font-size: 22px; /* Slightly larger font */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper, softer shadow */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dash-container > div:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-8px); /* More pronounced lift on hover */
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.3); /* Even deeper shadow on hover */
 }
 
-/* Stat Cards */
-.total, .attempts, .avg {
-  padding: 1rem;
-  width: auto;
-  text-align: center;
-  background: transparent;
-  border: none;
-}
-
+/* Stat Cards Content */
 .total h3, .attempts h3, .avg h3 {
   background: none;
   padding: 0.5rem;
-  margin: -1rem -1rem 1rem -1rem;
+  margin-bottom: 0.5rem; /* Space between title and value */
   color: white;
+  font-size: 1.1em; /* Smaller h3 relative to p */
+  font-weight: 600;
 }
 
+.total p, .attempts p, .avg p {
+  font-size: 1.8em; /* Larger value font */
+  font-weight: 700;
+  margin: 0; /* Remove default paragraph margin */
+}
 
-/* Responsive */
+/* Responsive adjustments */
 @media screen and (max-width: 768px) {
+  header {
+    height: auto; /* Allow header to expand */
+    flex-direction: column; /* Stack logo and nav vertically */
+    padding: 10px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
   #navbar ul {
     flex-direction: column;
-    gap: 10px;
+    gap: 5px; /* Smaller gap in column mode */
+    margin-right: 0;
+    width: 100%;
+    align-items: center; /* Center nav items */
+  }
+
+  #navbar ul li a, .dropdown-toggle {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    position: static; /* Stack dropdown items normally */
+    width: 100%;
+    box-shadow: none; /* Remove shadow when static */
+    border-radius: 0;
+    padding: 0;
+    top: auto; /* Reset top position */
+  }
+
+  .dropdown-menu li a {
+    border-left: none; /* Remove border in mobile */
+    padding-left: 20px; /* Reset padding */
+  }
+
+  .dash-container {
+    padding: 20px;
+    gap: 1.5rem;
+  }
+
+  .dash-container > div {
+    width: 180px; /* Slightly smaller cards on mobile */
+    height: 180px;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logo img {
+    height: 50px; /* Smaller logo on very small screens */
+  }
+
+  .dash-container {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center stacked cards */
   }
 }

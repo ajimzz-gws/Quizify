@@ -42,59 +42,94 @@
   </main>
 
   <script>
+    // Function to toggle the dashboard dropdown menu
     function toggleDropdown() {
       const dropdown = document.getElementById("dashboardDropdown");
       dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-      // Dashboard role switching
-      document.getElementById("dashboard-student").addEventListener("click", function () {
-        window.location.href = "dashboardStudent.html";
-      });
+      // --- Dashboard Navigation & Role Switching ---
+      const dashboardStudentLink = document.getElementById("dashboard-student");
+      const dashboardTeacherLink = document.getElementById("dashboard-teacher");
 
-      document.getElementById("dashboard-teacher").addEventListener("click", function () {
-        window.location.href = "dashboardTeachers.html";
-      });
-
-      // Header navigation buttons
-      document.getElementById("my-quizzes").addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "myQuizzes.html";
-      });
-
-      document.getElementById("result-link").addEventListener("click", function (e) {
-        e.preventDefault();
-        window.location.href = "quizResult.html";
-      });
-
-      document.getElementById("logout-btn").addEventListener("click", function (e) {
-        e.preventDefault();
-        // Optional: clear session or token here
-        alert("You have been logged out.");
-        window.location.href = "login.html";
-      });
-
-      // Fetch dashboard data from backend
-      fetch("http://localhost:8000/api/dashboard/student")
-        .then(res => res.json())
-        .then(data => {
-          document.querySelector(".total").innerHTML = `<h3>Total Quizzes</h3><p>${data.total_quizzes}</p>`;
-          document.querySelector(".attempts").innerHTML = `<h3>Attempts</h3><p>${data.attempts}</p>`;
-          document.querySelector(".avg").innerHTML = `<h3>Average Score</h3><p>${data.average_score}%</p>`;
-        })
-        .catch(err => {
-          console.error("Failed to load dashboard data:", err);
+      if (dashboardStudentLink) {
+        dashboardStudentLink.addEventListener("click", function () {
+          window.location.href = "dashboardStudent.html";
         });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener("click", function (event) {
-      const toggle = document.querySelector(".dropdown-toggle");
-      const menu = document.getElementById("dashboardDropdown");
-      if (!toggle.contains(event.target) && !menu.contains(event.target)) {
-        menu.style.display = "none";
       }
+
+      if (dashboardTeacherLink) {
+        dashboardTeacherLink.addEventListener("click", function () {
+          window.location.href = "dashboardTeachers.html";
+        });
+      }
+
+      // --- Header Navigation Buttons ---
+      const myQuizzesLink = document.getElementById("my-quizzes");
+      const resultLink = document.getElementById("result-link");
+      const logoutButton = document.getElementById("logout-btn");
+
+      if (myQuizzesLink) {
+        myQuizzesLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = "myQuizzes.html";
+        });
+      }
+
+      if (resultLink) {
+        resultLink.addEventListener("click", function (e) {
+          e.preventDefault();
+          window.location.href = "quizResult.html";
+        });
+      }
+
+      if (logoutButton) {
+        logoutButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          // Optional: clear session or token here before redirecting
+          alert("You have been logged out.");
+          window.location.href = "login.html";
+        });
+      }
+
+      // --- Fetch Dashboard Data for Student ---
+      const totalQuizzesDiv = document.querySelector(".total");
+      const attemptsDiv = document.querySelector(".attempts");
+      const averageScoreDiv = document.querySelector(".avg");
+
+      if (totalQuizzesDiv && attemptsDiv && averageScoreDiv) {
+        fetch("http://localhost:8000/api/dashboard/student")
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            totalQuizzesDiv.innerHTML = `<h3>Total Quizzes</h3><p>${data.total_quizzes}</p>`;
+            attemptsDiv.innerHTML = `<h3>Attempts</h3><p>${data.attempts}</p>`;
+            averageScoreDiv.innerHTML = `<h3>Average Score</h3><p>${data.average_score}%</p>`;
+          })
+          .catch(error => {
+            console.error("Failed to load dashboard data:", error);
+            // Optionally, update the UI to show an error message
+            totalQuizzesDiv.innerHTML = `<h3>Total Quizzes</h3><p>Error</p>`;
+            attemptsDiv.innerHTML = `<h3>Attempts</h3><p>Error</p>`;
+            averageScoreDiv.innerHTML = `<h3>Average Score</h3><p>Error</p>`;
+          });
+      } else {
+        console.warn("One or more dashboard data elements not found.");
+      }
+
+      // --- Close dropdown when clicking outside ---
+      document.addEventListener("click", function (event) {
+        const toggle = document.querySelector(".dropdown-toggle");
+        const menu = document.getElementById("dashboardDropdown");
+        if (toggle && menu && !toggle.contains(event.target) && !menu.contains(event.target)) {
+          menu.style.display = "none";
+        }
+      });
     });
   </script>
 </body>

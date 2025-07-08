@@ -4,65 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Quizify</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="createQuiz1.css"/>
+    <!-- Removed inline style block to avoid setting colors directly -->
 </head>
 
-<body>
-    <header>
-        <h1>Create a New Quiz</h1>
-        </header>
+<body class="min-h-screen flex items-center justify-center p-4">
+    <header class="w-full max-w-4xl p-6 rounded-t-xl shadow-lg mb-4">
+        <h1 class="text-center">Create a New Quiz</h1>
+    </header>
 
-        <div class="quiz-container">
-            <div class="steps">
-                <span class="step active">1. Quiz Info</span>
-                <span class="step">2. Add Questions</span>
-                <span class="step">3. Review & Publish</span>
-            </div>
+    <div class="quiz-container p-8 rounded-b-xl shadow-lg max-w-4xl w-full">
+        <div class="steps flex justify-around mb-8 border-b pb-4">
+            <span class="step active text-lg">1. Quiz Info</span>
+            <span class="step text-lg">2. Add Questions</span>
+            <span class="step text-lg">3. Review & Publish</span>
+        </div>
 
-            <!--quiz info-->
-            <div class="step-content" id="step1">
-                <label for="quiz-title">Quiz Title: </label>
-                <input type="text" id="quiz-title" 
-                placeholder="Enter quiz title">
+        <!--quiz info-->
+        <div class="step-content space-y-4" id="step1">
+            <label for="quiz-title" class="block text-sm font-medium">Quiz Title: </label>
+            <input type="text" id="quiz-title" class="mt-1 block w-full rounded-md shadow-sm p-2"
+            placeholder="Enter quiz title">
 
-                <label for="quiz-desc">Description: </label>
-                <textarea id="quiz-desc" placeholder="Breif description"></textarea>
-                <label for="totalQuestions">Total Questions:</label>
-                <input type="number" id="totalQuestions" min="1" required placeholder="e.g. 5" />
+            <label for="quiz-desc" class="block text-sm font-medium">Description: </label>
+            <textarea id="quiz-desc" class="mt-1 block w-full rounded-md shadow-sm p-2" placeholder="Brief description"></textarea>
 
-                <button onclick="nextStep()">Next</button>
-            </div>
+            <label for="totalQuestions" class="block text-sm font-medium">Total Questions:</label>
+            <input type="number" id="totalQuestions" min="1" required placeholder="e.g. 5" class="mt-1 block w-full rounded-md shadow-sm p-2" />
 
-            <!--add question-->
-            <div class="step-content hidden" id="step2">
-                <p id="questionTracker">0 / ? questions added</p>
-                <label for="question">Question: </label>
-                <input type="text" id="question" 
-                placeholder="Enter your question">
+            <button onclick="nextStep()" class="w-full font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">Next</button>
+        </div>
 
-                <label for="answer">Anaswer Choices: </label>
-                <input type="text" id="answer1" placeholder="Choice 1">
-                <input type="text" id="answer2" placeholder="Choice 2">
-                <input type="text" id="answer3" placeholder="Choice 3">
-                <input type="text" id="answer4" placeholder="Choice 4">
+        <!--add question-->
+        <div class="step-content hidden space-y-4" id="step2">
+            <p id="questionTracker" class="text-center mb-4">0 / ? questions added</p>
+            <label for="question" class="block text-sm font-medium">Question: </label>
+            <input type="text" id="question" class="mt-1 block w-full rounded-md shadow-sm p-2"
+            placeholder="Enter your question">
 
-                <div class="button-group">
-                  <button onclick="addQuestion()">Add Question</button>
-                  <button onclick="nextStep()">Next</button>
-                  <button onclick="saveToLocal()">Save</button>
-                  <button onclick="backStep()">Back</button>
-                </div>
-            </div>
+            <label for="answer" class="block text-sm font-medium">Answer Choices: </label>
+            <input type="text" id="answer1" placeholder="Choice 1" class="mt-1 block w-full rounded-md shadow-sm p-2 mb-2">
+            <input type="text" id="answer2" placeholder="Choice 2" class="mt-1 block w-full rounded-md shadow-sm p-2 mb-2">
+            <input type="text" id="answer3" placeholder="Choice 3" class="mt-1 block w-full rounded-md shadow-sm p-2 mb-2">
+            <input type="text" id="answer4" placeholder="Choice 4" class="mt-1 block w-full rounded-md shadow-sm p-2">
 
-            <!--add question-->
-            <div class="step-content hidden" id="step3">
-                <h2>Review Your Quiz</h2>
-                <div id="preview"></div>
-
-                <button onclick="publishQuiz()">Publish Quiz</button>
+            <div class="button-group flex justify-between space-x-4 mt-6">
+              <button onclick="addQuestion()" class="flex-1 font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">Add Question</button>
+              <button onclick="nextStep()" class="flex-1 font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">Next</button>
+              <button onclick="saveToLocal()" class="flex-1 font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">Save</button>
+              <button onclick="backStep()" class="flex-1 font-bold py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">Back</button>
             </div>
         </div>
 
-        <script src="createQuiz2.js"></script>
+        <!--review and publish-->
+        <div class="step-content hidden space-y-4" id="step3">
+            <h2 class="text-center mb-4">Review Your Quiz</h2>
+            <div id="preview" class="p-4 rounded-md shadow-inner min-h-[200px] overflow-y-auto"></div>
+
+            <button onclick="publishQuiz()" class="w-full font-bold py-3 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">Publish Quiz</button>
+        </div>
+    </div>
+
+    <script src="createQuiz2.js"></script>
 </body>
 </html>
