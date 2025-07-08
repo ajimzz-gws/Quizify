@@ -27,7 +27,7 @@ header {
   width: 100%;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  overflow: hidden; /* Prevent logo from stretching header height */
+  overflow: hidden;
 }
 .logo {
   display: flex;
@@ -50,6 +50,7 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 nav ul li a {
   color: white;
@@ -89,26 +90,26 @@ main {
   padding: 80px 20px;
 }
 #home h1 {
-  font-size: 36px;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
   color: #0277bd;
   margin-bottom: 20px;
 }
 
+/* RESULT CONTAINER */
 .result-container {
-  max-width: 700px;               /* Slightly wider */
-  margin: 120px auto 60px;        /* Center horizontally + space from top */
+  max-width: 700px;
+  margin: 120px auto 60px;
   background: white;
   padding: 40px;
   border-radius: 14px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-  text-align: center;             /* Center all inner text */
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.score-box h2{
-    font-size: 48px;
+.score-box h2 {
+  font-size: clamp(2rem, 6vw, 48px);
   color: #0288d1;
   margin: 10px 0;
 }
@@ -117,33 +118,35 @@ main {
   margin: 5px 0;
 }
 
-.buttons {
+/* BUTTONS */
+.buttons,
+.actions {
   margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
-.buttons button {
+.buttons button,
+.actions button {
   background-color: #0288d1;
   color: white;
   border: none;
   padding: 10px 25px;
-  margin: 10px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s, transform 0.2s;
 }
 .actions button {
-  margin: 10px;
-  padding: 10px 20px;
   background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
 }
-
 .actions button:hover {
   background-color: #0056b3;
+}
+.buttons button:hover {
+  background-color: #0277bd;
+  transform: translateY(-2px);
 }
 
 /* ABOUT SECTION */
@@ -156,8 +159,9 @@ main {
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0,0,0,0.05);
 }
-#about h1, #about h2 {
-  font-size: 32px;
+#about h1,
+#about h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
   color: #0288d1;
   margin-bottom: 15px;
 }
@@ -174,7 +178,7 @@ section {
 }
 section h2 {
   text-align: center;
-  font-size: 28px;
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
   color: #0277bd;
   margin-bottom: 30px;
 }
@@ -233,16 +237,32 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    height: auto;
+    padding: 15px;
+    text-align: center;
+  }
+
   nav ul {
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    margin-top: 10px;
   }
-  .buttons button {
+
+  .buttons button,
+  .actions button {
     width: 100%;
     max-width: 300px;
   }
+
   .card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .result-container {
+    margin: 100px 20px 40px;
+    padding: 30px 20px;
   }
 }

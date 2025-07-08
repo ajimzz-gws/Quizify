@@ -1,0 +1,6 @@
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* You can add very specific overrides here if absolutely necessary,
+   but most styling is now handled by Tailwind in the HTML. */

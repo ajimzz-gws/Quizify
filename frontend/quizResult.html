@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Quizify - Answer Quiz</title>
-    <link rel="stylesheet" href="quizResult1.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quizify - Answer Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <header>
-        <div class="logo">
-          <img src="images/quizify2.png" alt="Quizify Logo" />
-        </div>
+<body class="bg-sky-200 text-gray-800 font-sans overflow-x-hidden">
 
-        <nav>
-            <ul>
-                <li><a href="#" id="dashboard-btn">Dashboard</a></li>
-                <li><a href="#" id="logout-btn">Logout</a></li>
-            </ul>
-        </nav>
-        </header>
+  <!-- Header -->
+  <header class="bg-sky-600 text-white h-20 flex justify-between items-center px-8 fixed top-0 left-0 w-full z-50 shadow-md overflow-hidden">
+    <div class="logo flex items-center gap-3">
+      <img src="images/quizify2.png" alt="Quizify Logo" class="h-12 object-contain" />
+      <span class="text-xl font-bold"></span>
+    </div>
+    <nav>
+      <ul class="flex gap-6 text-sm font-semibold">
+        <li><a href="#" id="dashboard-btn" class="hover:text-sky-100 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white hover:after:w-full after:transition-all">Dashboard</a></li>
+        <li><a href="#" id="logout-btn" class="hover:text-sky-100 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-white hover:after:w-full after:transition-all">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <main class="result-container">
-            <h1>Quiz Result</h1>
+  <!-- Main Content -->
+  <main class="max-w-2xl mx-auto mt-36 mb-16 bg-white p-10 rounded-xl shadow-lg text-center flex flex-col items-center">
+    <h1 class="text-2xl font-semibold text-gray-800 mb-6">Quiz Result</h1>
 
-            <div class="score-box">
-            <h2 id="percentage">--%</h2>
-            <p id="summary">Your scored -- out of --</p>
-            </div>
+    <div class="score-box mb-6">
+      <h2 id="percentage" class="text-5xl text-sky-600 font-bold mb-2">--%</h2>
+      <p id="summary" class="text-lg text-gray-700">You scored -- out of --</p>
+    </div>
 
-            <div class="feedback" id="feedback"></div>
+    <div id="feedback" class="text-base text-gray-600 mb-6"></div>
 
-            <div class="actions">
-                <button onclick="retakeQuiz()">Retake Quiz</button>
-                <button onclick="reviewAnswers()">Review Answers</button>
-            </div>
-        </main>
+    <div class="actions flex flex-wrap justify-center gap-4">
+      <button onclick="retakeQuiz()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">Retake Quiz</button>
+      <button onclick="reviewAnswers()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">Review Answers</button>
+    </div>
+  </main>
 
-        <script src="quizResult2.js"></script>
-
+  <script src="quizResult2.js"></script>
 </body>
 </html>

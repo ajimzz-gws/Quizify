@@ -2,14 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Teacher Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Take Quiz</title>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <style>
     body {
@@ -17,34 +15,27 @@
     }
   </style>
 </head>
+<body class="bg-[#b3e5fc] text-[#333] min-h-screen flex flex-col items-center px-4 pt-24">
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-  <div class="dashboard-container relative w-full max-w-6xl bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+  <!-- Header -->
+  <header class="w-full max-w-4xl p-6 rounded-t-xl shadow-lg bg-[#0288d1] text-white text-center mb-4">
+    <h1 id="quiz-title" class="text-2xl sm:text-3xl font-bold">Loading quiz...</h1>
+    <p id="quiz-desc" class="text-base sm:text-lg mt-2"></p>
+  </header>
 
-    <!-- Header -->
-    <header class="p-4 bg-white flex justify-between items-center z-10 border-b border-gray-200">
-      <h1 class="text-2xl font-bold text-gray-800">DASHBOARD TEACHER</h1>
+  <!-- Quiz Container -->
+  <div class="quiz-container bg-white p-8 rounded-b-xl shadow-lg max-w-4xl w-full">
+    <form id="quiz-form" class="space-y-8">
+      <!-- Questions will be dynamically inserted here -->
+    </form>
 
-      <div class="relative group">
-        <div class="logo flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition duration-300 cursor-pointer">
-          <img src="images/quzify4.png" alt="Quizify Logo" class="h-10" />
-          <i class="fas fa-caret-down text-gray-600"></i>
-        </div>
+    <button id="submit-btn" class="hidden mt-6 w-full bg-[#0288d1] text-white font-bold py-3 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+      Submit Quiz
+    </button>
 
-        <!-- Dropdown menu with correct IDs -->
-        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-50">
-          <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-          <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
-        </div>
-      </div>
-    </header>
+    <div id="result" class="hidden mt-6 text-lg font-medium text-center"></div>
+  </div>
 
-  <main class="quiz-container">
-    <form id="quiz-form"></form>
-    <button id="submit-btn" class="hidden">Submit Quiz</button>
-    <div id="result" class="hidden"></div>
-  </main>
-
-  <script src="takeQuiz2.js"></script>
+  <script src="takeQuiz2.js" type="module"></script>
 </body>
 </html>
