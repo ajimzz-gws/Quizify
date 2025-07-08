@@ -234,7 +234,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = {$_SESSION['user_id']
 
     <script>
         let currentStep = 1;
-        let currentQuestionIndex = 0;
+        let currentQuestionIndex = 1;
         let quizData = [];
         let totalQuestions = 0;
 
@@ -251,7 +251,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = {$_SESSION['user_id']
                 document.getElementById("step2").classList.remove("hidden");
                 updateStepIndicator(2);
                 currentStep = 2;
-                currentQuestionIndex = 0;
+                currentQuestionIndex = 1;
                 loadQuestionData(); // Load question data when moving to step 2
                 updateQuestionCountDisplay();
                 return;
@@ -289,7 +289,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = {$_SESSION['user_id']
             }
 
             if (currentStep === 2) {
-                if (currentQuestionIndex > 0) {
+                if (currentQuestionIndex > 1) {
                     saveCurrentQuestion(); // Save current question before moving back
                     currentQuestionIndex--;
                     loadQuestionData(); // Load previous question's data
