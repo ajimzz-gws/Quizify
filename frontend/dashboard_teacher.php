@@ -4,8 +4,8 @@ require_once 'bootstrap.php';
 $auth->preventBackButton();
 $auth->requireRole('teacher');
 
-// Get teacher's quizzes and stats
 $userId = $_SESSION['user_id'];
+
 $quizzes = $db->pdo->query("
     SELECT q.*, 
            (SELECT COUNT(*) FROM quiz_attempts WHERE quiz_id = q.id) as attempt_count,
@@ -15,43 +15,61 @@ $quizzes = $db->pdo->query("
     ORDER BY q.created_at DESC
 ")->fetchAll(PDO::FETCH_ASSOC);
 
-// Get teacher profile
 $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Teacher Dashboard - Quizify</title>
-  
-  <!-- Tailwind CSS -->
+
+  <!-- Tailwind CSS & Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1632820449134-c0834d0c4b86?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(30, 64, 175, 0.6); /* Blue overlay */
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
     }
   </style>
 
   <script>
     window.addEventListener("pageshow", function(event) {
-        if (event.persisted) {
-            // Page was loaded from back-forward cache (bfcache)
-            window.location.reload();
-        }
+      if (event.persisted) {
+        window.location.reload();
+      }
     });
-</script>
+  </script>
 </head>
 
-<body class="bg-gray-50 min-h-screen">
-  <div class="flex flex-col min-h-screen">
+<body>
+  <!-- Overlay -->
+  <div class="overlay"></div>
+
+  <div class="content-wrapper flex flex-col min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm py-4 px-6 flex justify-between items-center">
+    <header class="bg-white bg-opacity-90 shadow py-4 px-6 flex justify-between items-center">
       <h1 class="text-2xl font-bold text-blue-600">Quizify Teacher Dashboard</h1>
       <div class="relative">
         <button id="profileDropdownBtn" class="flex items-center space-x-2 focus:outline-none">
@@ -66,7 +84,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Layout -->
     <div class="flex flex-1">
       <!-- Sidebar -->
       <aside class="w-64 bg-blue-700 text-white p-6">
@@ -109,9 +127,9 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
         </nav>
       </aside>
 
-      <!-- Main Content Area -->
-      <main class="flex-1 p-8">
-        <!-- Stats Cards -->
+      <!-- Main Content -->
+      <main class="flex-1 p-8 bg-white bg-opacity-90">
+        <!-- Stats -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div class="bg-white rounded-lg shadow p-6">
             <h3 class="text-3xl font-bold text-blue-600"><?= count($quizzes) ?></h3>
@@ -137,7 +155,7 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
               <i class="fas fa-plus mr-2"></i>Create New Quiz
             </a>
           </div>
-          
+
           <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
@@ -185,16 +203,14 @@ $teacher = $db->pdo->query("SELECT * FROM users WHERE id = $userId")->fetch(PDO:
   </div>
 
   <script>
-    // Toggle profile dropdown
     document.getElementById('profileDropdownBtn').addEventListener('click', function() {
       document.getElementById('profileDropdown').classList.toggle('hidden');
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', function(event) {
       const dropdown = document.getElementById('profileDropdown');
       const button = document.getElementById('profileDropdownBtn');
-      
+
       if (!button.contains(event.target) && !dropdown.contains(event.target)) {
         dropdown.classList.add('hidden');
       }
