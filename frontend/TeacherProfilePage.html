@@ -5,42 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Teacher Profile</title>
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Font: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-  <div class="profile-container w-full max-w-2xl bg-white shadow-lg rounded-xl overflow-hidden p-8">
-    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Teacher Profile</h1>
+<body class="bg-gradient-to-br from-blue-50 to-teal-100 min-h-screen flex items-center justify-center p-4">
+  <div class="profile-container w-full max-w-2xl bg-white shadow-xl rounded-xl overflow-hidden p-8">
+    <h1 class="text-4xl font-extrabold text-blue-700 mb-6 text-center">Teacher Profile</h1>
 
-    <!-- Profile Picture -->
     <div class="flex flex-col items-center mb-8">
-      <div class="relative w-32 h-32 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center mb-4">
+      <div class="relative w-32 h-32 rounded-full overflow-hidden bg-blue-100 flex items-center justify-center mb-4 border-4 border-blue-300">
         <img id="profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Teacher" alt="Profile Picture" class="w-full h-full object-cover" />
-        <label for="image-upload" class="absolute bottom-0 right-0 bg-blue-600 p-2 rounded-full cursor-pointer hover:bg-blue-700 transition duration-300">
+        <label for="image-upload" class="absolute bottom-0 right-0 bg-blue-500 p-2 rounded-full cursor-pointer hover:bg-blue-600 transition duration-300">
           <i class="fas fa-camera text-white text-lg"></i>
           <input type="file" id="image-upload" accept="image/*" class="hidden" />
         </label>
       </div>
-      <h2 id="display-name" class="text-2xl font-semibold text-gray-800">Jane Smith</h2>
+      <h2 id="display-name" class="text-2xl font-bold text-gray-800">Jane Smith</h2>
       <p id="display-role" class="text-gray-600">Teacher</p>
     </div>
 
-    <!-- Form Fields -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <!-- Personal Info -->
-      <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-        <h3 class="text-lg font-medium text-gray-700 mb-4">Personal Information</h3>
+      <div class="bg-blue-50 p-6 rounded-lg shadow-sm border border-blue-100">
+        <h3 class="text-xl font-semibold text-blue-600 mb-4 border-b pb-3 border-blue-200">Personal Information</h3>
         <div class="mb-4">
           <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
           <input type="text" id="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
@@ -59,40 +49,37 @@
         </div>
       </div>
 
-      <!-- Professional Info -->
-      <div class="bg-gray-50 p-4 rounded-lg shadow-sm">
-        <h3 class="text-lg font-medium text-gray-700 mb-4">Professional Information</h3>
+      <div class="bg-teal-50 p-6 rounded-lg shadow-sm border border-teal-100">
+        <h3 class="text-xl font-semibold text-teal-600 mb-4 border-b pb-3 border-teal-200">Professional Information</h3>
         <div class="mb-4">
           <label for="teacher_id" class="block text-sm font-medium text-gray-700">Teacher ID</label>
-          <input type="text" id="teacher_id" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+          <input type="text" id="teacher_id" readonly class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" />
         </div>
         <div class="mb-4">
           <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-          <input type="text" id="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+          <input type="text" id="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" />
         </div>
         <div class="mb-4">
           <label for="grade_levels" class="block text-sm font-medium text-gray-700">Grade Levels</label>
-          <input type="text" id="grade_levels" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+          <input type="text" id="grade_levels" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" />
         </div>
         <div>
           <label for="years_experience" class="block text-sm font-medium text-gray-700">Years of Experience</label>
-          <input type="number" id="years_experience" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" />
+          <input type="number" id="years_experience" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500 sm:text-sm p-2" />
         </div>
       </div>
     </div>
 
-    <!-- Action Buttons -->
     <div class="flex justify-center space-x-4">
-      <button id="save-btn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+      <button id="save-btn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
         <i class="fas fa-save mr-2"></i> Save Changes
       </button>
-      <button id="back-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
+      <button id="back-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105">
         <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
       </button>
     </div>
   </div>
 
-  <!-- JS Logic -->
   <script type="module" src="TeacherProfile2.js"></script>
 </body>
 </html>

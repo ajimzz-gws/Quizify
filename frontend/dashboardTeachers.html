@@ -7,53 +7,62 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="dashboardTeachers.css" />
+
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
+    /* Tailwind JIT mode might require custom colors to be configured.
+       For simplicity, we'll use standard Tailwind colors directly in classes.
+       If you need custom colors, you'd extend tailwind.config.js. */
   </style>
 </head>
 
-<body class="bg-white min-h-screen flex items-center justify-center p-4">
-  <div class="w-full max-w-6xl bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+<body class="bg-blue-50 min-h-screen flex items-center justify-center p-0">
+  <div class="w-full bg-white shadow-2xl rounded-none overflow-hidden flex flex-col min-h-screen">
 
     <!-- Header -->
-    <header class="p-4 bg-white flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-200 gap-4">
-      <h1 class="text-xl sm:text-2xl font-bold text-gray-800">DASHBOARD TEACHER</h1>
+    <header class="p-6 bg-white flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-100 gap-4">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-800">DASHBOARD TEACHER</h1>
       <div class="relative group self-end sm:self-auto">
-        <div class="flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition cursor-pointer">
+        <div class="flex items-center space-x-2 p-3 rounded-lg hover:bg-blue-50 transition cursor-pointer">
+          <!-- Using a placeholder for the logo as the image file was not provided directly -->
           <img src="images/quzify4.png" alt="Quizify Logo" class="h-10" />
-          <i class="fas fa-caret-down text-gray-600"></i>
+          <i class="fas fa-caret-down text-blue-600"></i>
         </div>
-        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-10">
-          <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-          <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
+        <div class="absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-10 border border-gray-100">
+          <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200">Profile</a>
+          <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-700 transition duration-200">Log out</a>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content Area -->
     <div class="flex flex-col lg:flex-row flex-grow">
       <!-- Sidebar -->
-      <aside class="w-full lg:w-64 bg-blue-700 p-6 text-white">
-        <div class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
-          <img id="sidebar-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-3 object-cover" />
+      <aside class="w-full lg:w-64 bg-blue-800 p-6 text-white shadow-inner lg:shadow-none">
+        <div class="flex items-center mb-8 bg-blue-700 p-4 rounded-lg shadow-md">
+          <img id="sidebar-profile-picture" src="https://placehold.co/128x128/a7c5ed/ffffff?text=Profile" alt="Profile Picture" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-blue-500" />
           <div>
-            <p class="font-semibold text-lg">Welcome, <span id="sidebar-user-name">John Doe</span>!</p>
-            <p class="text-sm opacity-90">Email: johndoe@example.com</p>
+            <p class="font-bold text-2xl">Welcome, <span id="sidebar-user-name">John Doe</span>!</p>
+            <p class="text-base opacity-90 text-blue-200">Email: johndoe@example.com</p>
           </div>
         </div>
 
         <nav>
           <ul>
             <li class="mb-4">
-              <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Past Quiz</a>
+              <a href="#" class="text-white hover:text-blue-200 block py-3 px-4 rounded-lg text-lg font-medium transition duration-200 hover:bg-blue-700">
+                <i class="fas fa-clipboard-list mr-3"></i> Past Quiz
+              </a>
             </li>
             <li class="mb-4">
-              <select id="classSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
+              <label for="classSelect" class="sr-only">Select Class</label>
+              <select id="classSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400 cursor-pointer">
                 <option value="">Select Class</option>
                 <option value="5A">Class 5A</option>
                 <option value="5B">Class 5B</option>
@@ -61,38 +70,74 @@
               </select>
             </li>
             <li class="mb-4">
-              <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Quiz Library</a>
+              <a href="#" class="text-white hover:text-blue-200 block py-3 px-4 rounded-lg text-lg font-medium transition duration-200 hover:bg-blue-700">
+                <i class="fas fa-book-open mr-3"></i> Quiz Library
+              </a>
             </li>
             <li class="mb-4">
-              <a href="createQuiz.html" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Quiz Created</a>
+              <a href="createQuiz.html" class="text-white hover:text-blue-200 block py-3 px-4 rounded-lg text-lg font-medium transition duration-200 hover:bg-blue-700">
+                <i class="fas fa-pencil-alt mr-3"></i> Quiz Created
+              </a>
             </li>
           </ul>
         </nav>
       </aside>
 
       <!-- Main Area -->
-      <main class="flex-grow p-6 bg-white">
-        <div class="bg-blue-100 p-4 rounded-lg mb-8 flex flex-col sm:flex-row items-start sm:items-center">
-          <img id="banner-profile-picture" src="https://placehold.co/128x128/cccccc/333333?text=Profile" alt="Profile Picture" class="w-12 h-12 rounded-full mr-4 mb-2 sm:mb-0 object-cover" />
+      <main class="flex-grow p-8 bg-gray-50">
+        <div class="bg-blue-600 text-white p-6 rounded-lg mb-8 flex flex-col sm:flex-row items-start sm:items-center shadow-md">
+          <img id="banner-profile-picture" src="https://placehold.co/128x128/a7c5ed/ffffff?text=Profile" alt="Profile Picture" class="w-16 h-16 rounded-full mr-4 mb-2 sm:mb-0 object-cover border-2 border-blue-300" />
           <div>
-            <p class="font-semibold text-blue-800 text-lg">Welcome, <span id="banner-user-name">John Doe</span>!</p>
-            <p class="text-blue-600">Email: johndoe@example.com</p>
+            <p class="font-bold text-xl">Welcome, <span id="banner-user-name">John Doe</span>!</p>
+            <p class="text-blue-200">Email: johndoe@example.com</p>
           </div>
         </div>
 
         <!-- Quiz Table -->
-        <div class="overflow-x-auto">
-          <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-            <thead>
-              <tr class="bg-gray-100 border-b border-gray-200">
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tl-lg">Subject</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Quiz Name</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Score</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tr-lg">Grade</th>
+        <div class="overflow-x-auto bg-white rounded-lg shadow-md border border-gray-100">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider rounded-tl-lg">Subject</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Quiz Name</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Score</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider rounded-tr-lg">Grade</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody id="quizTableBody">
-              <!-- Quiz data will be loaded here by JavaScript -->
+            <tbody id="quizTableBody" class="bg-white divide-y divide-gray-100">
+              <!-- Example Quiz Data (replace with dynamic data from JS) -->
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">Mathematics</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">Algebra Basics Quiz</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">85/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-green-600 font-semibold">A-</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">Science</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">Biology Chapter 1</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">72/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-yellow-600 font-semibold">C+</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">History</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">World War II Overview</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">95/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-green-600 font-semibold">A</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
+              </tr>
+              <!-- End Example Quiz Data -->
             </tbody>
           </table>
         </div>

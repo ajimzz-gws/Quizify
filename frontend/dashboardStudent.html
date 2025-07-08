@@ -17,28 +17,28 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: white;
+      /* Tailwind classes will handle background and overflow */
       overflow-x: hidden;
     }
   </style>
 </head>
 
-<body class="min-h-screen flex items-center justify-center p-4">
-
+<body class="bg-blue-50 min-h-screen flex items-center justify-center p-0">
   <!-- Dashboard Container -->
-  <div class="w-full max-w-6xl bg-white shadow-lg rounded-xl overflow-hidden flex flex-col">
+  <div class="w-full bg-white shadow-2xl rounded-none overflow-hidden flex flex-col min-h-screen">
 
     <!-- Header -->
-    <header class="p-4 bg-white flex justify-between items-center z-10 border-b border-gray-200">
-      <h1 class="text-xl sm:text-2xl font-bold text-gray-800">DASHBOARD STUDENT</h1>
-      <div class="relative group">
-        <div class="logo flex items-center space-x-2 p-2 rounded-md hover:bg-gray-100 transition duration-300 cursor-pointer">
+    <header class="p-6 bg-white flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-100 gap-4">
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-800">DASHBOARD STUDENT</h1>
+      <div class="relative group self-end sm:self-auto">
+        <div class="flex items-center space-x-2 p-3 rounded-lg hover:bg-blue-50 transition cursor-pointer">
+          <!-- Logo Q maintained -->
           <img src="images/quzify4.png" alt="Quizify Logo" class="h-10" />
-          <i class="fas fa-caret-down text-gray-600"></i>
+          <i class="fas fa-caret-down text-blue-600"></i>
         </div>
-        <div class="absolute right-0 mt-2 w-32 bg-white rounded-md shadow-lg py-1 hidden group-hover:block">
-          <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
-          <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
+        <div class="absolute right-0 mt-2 w-36 bg-white rounded-md shadow-lg py-1 hidden group-hover:block z-10 border border-gray-100">
+          <a href="#" id="profile-btn" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-700 transition duration-200">Profile</a>
+          <a href="#" id="logout-btn" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-700 transition duration-200">Log out</a>
         </div>
       </div>
     </header>
@@ -46,35 +46,44 @@
     <!-- Main Dashboard Content -->
     <div class="flex flex-col lg:flex-row flex-grow">
       <!-- Sidebar -->
-      <aside class="w-full lg:w-64 bg-blue-700 p-6 text-white">
-        <div class="flex items-center mb-8 bg-blue-800 p-3 rounded-md">
-          <i class="fas fa-user-circle text-4xl mr-3"></i>
+      <aside class="w-full lg:w-64 bg-blue-800 p-6 text-white shadow-inner lg:shadow-none">
+        <div class="flex items-center mb-8 bg-blue-700 p-4 rounded-lg shadow-md">
+          <!-- Using a placeholder for the profile picture as it was an icon before -->
+          <img id="sidebar-profile-picture" src="https://placehold.co/128x128/a7c5ed/ffffff?text=Profile" alt="Profile Picture" class="w-14 h-14 rounded-full mr-4 object-cover border-2 border-blue-500" />
           <div>
-            <p class="font-semibold text-lg">Welcome, John Doe!</p>
-            <p class="text-sm opacity-90">Class: 5A</p>
+            <p class="font-bold text-2xl">Welcome, <span id="sidebar-user-name">John Doe</span>!</p>
+            <p class="text-base opacity-90 text-blue-200">Class: 5A</p>
           </div>
         </div>
 
-        <h3 class="text-lg font-semibold mb-4">Class: 5A</h3>
+        <!-- Removed redundant "Class: 5A" heading -->
 
         <nav>
           <ul>
             <li class="mb-4">
-              <a href="#" class="text-white hover:text-blue-200 block py-2 text-lg font-medium">Past Quiz</a>
+              <a href="#" class="text-white hover:text-blue-200 block py-3 px-4 rounded-lg text-lg font-medium transition duration-200 hover:bg-blue-700">
+                <i class="fas fa-clipboard-list mr-3"></i> Past Quiz
+              </a>
             </li>
             <li class="mb-4">
-              <select class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
-                <option>Select Class</option>
-                <option>Class A</option>
-                <option>Class B</option>
+              <label for="classSelect" class="sr-only">Select Class</label>
+              <select id="classSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400 cursor-pointer">
+                <option value="">Select Class</option>
+                <option value="5A">Class 5A</option>
+                <option value="5B">Class 5B</option>
+                <option value="6A">Class 6A</option>
               </select>
             </li>
             <li class="mb-4">
-              <select class="block w-full bg-blue-600 border border-blue-500 text-white py-2 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400">
-                <option>Select Subject</option>
-                <option>Mathematics</option>
-                <option>Science</option>
-                <option>History</option>
+              <label for="subjectSelect" class="sr-only">Select Subject</label>
+              <select id="subjectSelect" class="block w-full bg-blue-600 border border-blue-500 text-white py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-blue-500 focus:border-blue-400 cursor-pointer">
+                <option value="">Select Subject</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                <option value="Bahasa Melayu">Bahasa Melayu</option>
+                <option value="Sejarah">Sejarah</option>
+                <option value="Sains">Sains</option>
               </select>
             </li>
           </ul>
@@ -82,56 +91,78 @@
       </aside>
 
       <!-- Main Content -->
-      <main class="flex-grow p-6 bg-white">
-        <div class="bg-blue-100 p-4 rounded-lg mb-8 flex flex-col sm:flex-row items-start sm:items-center">
-          <i class="fas fa-user-circle text-blue-700 text-3xl mr-4 mb-2 sm:mb-0"></i>
+      <main class="flex-grow p-8 bg-gray-50">
+        <div class="bg-blue-600 text-white p-6 rounded-lg mb-8 flex flex-col sm:flex-row items-start sm:items-center shadow-md">
+          <!-- Using a placeholder for the profile picture as it was an icon before -->
+          <img id="banner-profile-picture" src="https://placehold.co/128x128/a7c5ed/ffffff?text=Profile" alt="Profile Picture" class="w-16 h-16 rounded-full mr-4 mb-2 sm:mb-0 object-cover border-2 border-blue-300" />
           <div>
-            <p class="font-semibold text-blue-800 text-lg">Welcome, John Doe!</p>
-            <p class="text-blue-600">Class: 5A</p>
+            <p class="font-bold text-xl">Welcome, <span id="banner-user-name">John Doe</span>!</p>
+            <p class="text-blue-200">Class: 5A</p>
           </div>
         </div>
 
         <!-- Quiz Table -->
-        <div class="overflow-x-auto">
-          <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-            <thead>
-              <tr class="bg-gray-100 border-b border-gray-200">
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tl-lg">Subject</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Quiz Name</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Score</th>
-                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600 rounded-tr-lg">Grade</th>
+        <div class="overflow-x-auto bg-white rounded-lg shadow-md border border-gray-100">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider rounded-tl-lg">Subject</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Quiz Name</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Score</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider rounded-tr-lg">Grade</th>
+                <th class="py-3 px-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <tr class="border-b border-gray-200">
-                <td class="py-3 px-4 text-sm text-gray-700">Bahasa Melayu</td>
-                <td class="py-3 px-4 text-sm text-gray-700">Tatabahasa Ayat Majmuk</td>
-                <td class="py-3 px-4 text-sm text-gray-700">78/100</td>
-                <td class="py-3 px-4 text-sm text-gray-700">B</td>
+            <tbody id="quizTableBody" class="bg-white divide-y divide-gray-100">
+              <!-- Example Quiz Data (replace with dynamic data from JS) -->
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">Bahasa Melayu</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">Tatabahasa Ayat Majmuk</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">78/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-blue-600 font-semibold">B</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
               </tr>
-              <tr class="border-b border-gray-200">
-                <td class="py-3 px-4 text-sm text-gray-700">Sejarah</td>
-                <td class="py-3 px-4 text-sm text-gray-700">Kuiz Online : Sejarah Dunia</td>
-                <td class="py-3 px-4 text-sm text-gray-700">90/100</td>
-                <td class="py-3 px-4 text-sm text-gray-700">A+</td>
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">Sejarah</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">Kuiz Online : Sejarah Dunia</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">90/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-green-600 font-semibold">A+</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
               </tr>
-              <tr class="border-b border-gray-200">
-                <td class="py-3 px-4 text-sm text-gray-700">Sains</td>
-                <td class="py-3 px-4 text-sm text-gray-700">Ujian Mikro: Elektrik</td>
-                <td class="py-3 px-4 text-sm text-gray-700">85/100</td>
-                <td class="py-3 px-4 text-sm text-gray-700">B+</td>
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">Sains</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">Ujian Mikro: Elektrik</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">85/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-blue-600 font-semibold">B+</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
               </tr>
-              <tr>
-                <td class="py-3 px-4 text-sm text-gray-700">Sains</td>
-                <td class="py-3 px-4 text-sm text-gray-700">Kuiz Pintar: Rangkaian Makanan</td>
-                <td class="py-3 px-4 text-sm text-gray-700">100/100</td>
-                <td class="py-3 px-4 text-sm text-gray-700">A+</td>
+              <tr class="hover:bg-gray-50 transition duration-150">
+                <td class="py-3 px-4 whitespace-nowrap text-sm font-medium text-gray-900">Sains</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">Kuiz Pintar: Rangkaian Makanan</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-700">100/100</td>
+                <td class="py-3 px-4 whitespace-nowrap text-sm text-green-600 font-semibold">A+</td>
+                <td class="py-3 px-4 whitespace-nowrap text-right text-sm font-medium">
+                  <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                  <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
+                </td>
               </tr>
+              <!-- End Example Quiz Data -->
             </tbody>
           </table>
         </div>
       </main>
     </div>
   </div>
+  <!-- JavaScript Logic (assuming studentDashboard.js will handle dynamic content) -->
+  <script type="module" src="studentDashboard.js"></script>
 </body>
 </html>

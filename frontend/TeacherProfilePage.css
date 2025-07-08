@@ -1,0 +1,18 @@
+/* Font override - essential for consistent font */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom select arrow - Tailwind doesn't provide this directly */
+select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2020%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M9.293%2012.95l.707.707L15.657%208l-1.414-1.414L10%2010.828%205.757%206.586%204.343%208z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.65em auto;
+}
+
+/* Optional: table row cleanup (already in your original CSS, kept for consistency) */
+tbody tr:last-child td {
+  border-bottom: none;
+}
