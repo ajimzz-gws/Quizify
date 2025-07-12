@@ -28,7 +28,7 @@ $availableQuizzes = $db->pdo->query("
 
 // Fetch quiz attempts
 $attempts = $db->pdo->query("
-    SELECT q.title, q.category, qa.score, qa.submitted_at, q.id as quiz_id
+    SELECT q.title, q.category, qa.score, qa.id as attempt_id, qa.submitted_at, q.id as quiz_id
     FROM quiz_attempts qa
     JOIN quizzes q ON qa.quiz_id = q.id
     WHERE qa.user_id = $userId
@@ -147,15 +147,6 @@ function calculateGrade($score) {
 
         <!-- Main Content -->
         <main class="flex-grow p-6 bg-white bg-opacity-90">
-          <!-- Welcome Card -->
-          <div class="bg-blue-100 p-4 rounded-lg mb-8 flex flex-col sm:flex-row items-start sm:items-center">
-            <i class="fas fa-user-circle text-blue-700 text-3xl mr-4 mb-2 sm:mb-0"></i>
-            <div>
-              <p class="font-semibold text-blue-800 text-lg">Welcome, <?= htmlspecialchars($student['full_name']) ?>!</p>
-              <p class="text-blue-600">Class: <?= htmlspecialchars($studentData['class']) ?></p>
-            </div>
-          </div>
-
           <!-- Stats -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             <div class="bg-white p-4 rounded-lg shadow border border-gray-200">
@@ -181,7 +172,7 @@ function calculateGrade($score) {
               </div>
             <?php else: ?>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <?php foreach ($availableQuizzes as $quiz): ?>
+                <?php foreach (array_slice($availableQuizzes, 0, 2) as $quiz): ?>
                   <div class="bg-white p-4 rounded-lg shadow border border-gray-200">
                     <h3 class="text-lg font-semibold text-blue-800 mb-2"><?= htmlspecialchars($quiz['title']) ?></h3>
                     <?php if (!empty($quiz['description'])): ?>
@@ -219,7 +210,7 @@ function calculateGrade($score) {
                       <td class="py-3 px-4 text-sm text-gray-700"><?= $attempt['score'] ?? 'N/A' ?></td>
                       <td class="py-3 px-4 text-sm text-gray-700"><?= isset($attempt['score']) ? calculateGrade($attempt['score']) : 'N/A' ?></td>
                       <td class="py-3 px-4 text-sm text-gray-700">
-                        <a href="quiz_review.php?quiz_id=<?= $attempt['quiz_id'] ?>" class="text-blue-600 hover:underline">Review</a>
+                        <a href="quiz_review.php?id=<?= htmlspecialchars($attempt['attempt_id']) ?>" class="text-blue-600 hover:underline">Review</a>
                       </td>
                     </tr>
                   <?php endforeach; ?>
