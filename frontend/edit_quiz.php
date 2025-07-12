@@ -2,6 +2,12 @@
 require_once 'bootstrap.php';
 $auth->requireRole('teacher');
 
+// At the top of your PHP file
+if (!isset($_SESSION['back_url']) && isset($_SERVER['HTTP_REFERER'])) {
+    $_SESSION['back_url'] = $_SERVER['HTTP_REFERER'];
+}
+$backUrl = $_SESSION['back_url'] ?? 'dashboard_teacher.php';
+
 // Get quiz ID from URL
 $quizId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
@@ -118,7 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <p class="text-blue-100">Make changes to your quiz questions and settings</p>
                 </div>
-
                 <!-- Form -->
                 <form method="post" class="p-6">
                     <?php if (isset($_SESSION['error'])): ?>

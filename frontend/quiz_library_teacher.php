@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['duplicate_quiz']) && 
         ]);
         
         $newQuizId = $db->pdo->lastInsertId();
-        header("Location: edit_quiz.php?id=$newQuizId");
+        header("Location: edit_quiz.php?id=$newQuizId&from=quiz_library_teacher.php");
         exit();
     }
 }

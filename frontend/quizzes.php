@@ -2,6 +2,8 @@
 require_once 'bootstrap.php';
 $auth->requireRole('teacher');
 
+$backUrl = $_GET['from'] ?? 'dashboard_teacher.php';
+
 // Handle quiz deletion
 if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
     $quizId = (int)$_GET['id'];
@@ -18,7 +20,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
         $_SESSION['error'] = "You can only delete your own quizzes";
     }
     
-    header("Location: quiz_library.php");
+    header("Location: quizzes.php");
     exit;
 }
 
@@ -56,7 +58,11 @@ $quizzes = $db->pdo->query("
 </head>
 <body class="bg-gray-50 min-h-screen">
     <div class="flex flex-col min-h-screen">
-
+        <header class="sticky top-0 z-10 bg-white shadow px-6 py-4 flex items-center">
+        <a href="<?= $backUrl ?>" class="text-gray-600 hover:text-gray-800">
+            <i class="fas fa-arrow-left"></i> Back 
+        </a>
+        </header>
         <!-- Main Content -->
         <main class="flex-1 p-8">
             <div class="max-w-7xl mx-auto">
@@ -66,13 +72,7 @@ $quizzes = $db->pdo->query("
                         <h1 class="text-3xl font-bold text-gray-900">Quiz Library</h1>
                         <p class="text-gray-600">Manage and organize your quizzes</p>
                     </div>
-                    <!-- Add this right after your form header or before the quiz info section -->
-                    <div class="mb-4">
-                        <a href="dashboard_teacher.php" 
-                        class="inline-flex items-center px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
-                            <i class="fas fa-arrow-left mr-2"></i> Back to Dashboard
-                        </a>
-                    </div>
+                    
                     <a href="create_quiz.php" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                         <i class="fas fa-plus mr-2"></i> Create New Quiz
                     </a>
@@ -124,12 +124,11 @@ $quizzes = $db->pdo->query("
                                            class="flex-1 text-center py-2 px-3 bg-blue-50 text-blue-600 rounded hover:bg-blue-100 transition">
                                             <i class="fas fa-eye mr-1"></i> View
                                         </a>
-                                        <a href="edit_quiz.php?id=<?= $quiz['id'] ?>" 
+                                        <a href="edit_quiz.php?id=<?= $quiz['id'] ?>&from=quiz_library_teacher.php" 
                                            class="flex-1 text-center py-2 px-3 bg-gray-50 text-gray-600 rounded hover:bg-gray-100 transition">
                                             <i class="fas fa-edit mr-1"></i> Edit
                                         </a>
-                                        <a href="quiz_library.php?action=delete&id=<?= $quiz['id'] ?>" 
-                                           onclick="return confirm('Are you sure you want to delete this quiz?')"
+                                        <a href="quizzes.php?action=delete&id=<?= $quiz['id'] ?>"
                                            class="flex-1 text-center py-2 px-3 bg-red-50 text-red-600 rounded hover:bg-red-100 transition">
                                             <i class="fas fa-trash mr-1"></i> Delete
                                         </a>

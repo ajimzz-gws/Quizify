@@ -133,6 +133,10 @@ $teacherData = isset($teacher['teacher_data']) ? json_decode($teacher['teacher_d
         <div class="bg-white rounded-lg shadow overflow-hidden">
           <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
             <h2 class="text-xl font-semibold text-gray-800">Your Quizzes</h2>
+            <a href="quizzes.php" 
+              class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+              <i class="fas fa-list mr-2"></i> All Quizzes
+            </a>
             <a href="create_quiz.php" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md">
               <i class="fas fa-plus mr-2"></i>Create New Quiz
             </a>
@@ -171,11 +175,11 @@ $teacherData = isset($teacher['teacher_data']) ? json_decode($teacher['teacher_d
                     ?>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap space-x-2">
-                    <a href="view_attempts.php?quiz_id=<?= $quiz['id'] ?>" 
+                    <a href="view_attempts.php?id=<?= $quiz['id'] ?>" 
                        class="text-blue-600 hover:text-blue-800">
                       <i class="fas fa-eye mr-1"></i>View
                     </a>
-                    <a href="edit_quiz.php?id=<?= $quiz['id'] ?>" 
+                    <a href="edit_quiz.php?id=<?= $quiz['id'] ?>&from=dashboard_teacher.php" 
                        class="text-green-600 hover:text-green-800">
                       <i class="fas fa-edit mr-1"></i>Edit
                     </a>
