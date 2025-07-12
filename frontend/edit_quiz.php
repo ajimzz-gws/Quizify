@@ -2,11 +2,7 @@
 require_once 'bootstrap.php';
 $auth->requireRole('teacher');
 
-// At the top of your PHP file
-if (!isset($_SESSION['back_url']) && isset($_SERVER['HTTP_REFERER'])) {
-    $_SESSION['back_url'] = $_SERVER['HTTP_REFERER'];
-}
-$backUrl = $_SESSION['back_url'] ?? 'dashboard_teacher.php';
+$backUrl = $_GET['from'] ?? 'dashboard_teacher.php';
 
 // Get quiz ID from URL
 $quizId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -19,7 +15,8 @@ $quiz = $db->pdo->query("
 
 if (!$quiz) {
     $_SESSION['error'] = "Quiz not found or you don't have permission to edit it";
-    header("Location: quizzez.php");
+    $from = $_GET['from'] ?? 'dashboard_teacher.php';
+    header("Location: quizzes.php?from=$from&error=quiz_not_found");
     exit;
 }
 
