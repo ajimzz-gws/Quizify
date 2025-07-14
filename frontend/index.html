@@ -26,21 +26,41 @@
 </head>
 
 <body class="min-h-screen flex flex-col">
-  <header class="w-full p-4 flex justify-between items-center shadow-md">
-    <div class="logo">
-      <img src="images/quizify2.png" alt="Quizify Logo" class="h-10" />
-    </div>
-    <nav id="navbar">
-      <ul class="flex space-x-4 md:space-x-8">
-        <li><a href="#home" class="hover:underline">Home</a></li>
-        <li><a href="#about" class="hover:underline">About</a></li>
-        <li><a href="#features" class="hover:underline">Features</a></li>
-        <li><a href="#target" class="hover:underline">Target</a></li>
-        <li><a href="#faq" class="hover:underline">FAQ</a></li>
-        <li><a href="#contact" class="hover:underline">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <header class="fixed w-full bg-[#0288d1] text-white px-6 py-4 flex items-center justify-between z-50 shadow-md">
+  <div class="logo flex items-center gap-2">
+    <img src="images/quizify2.png" alt="Quizify Logo" class="h-10" />
+  </div>
+
+  <!-- Mobile Toggle Button (hidden on desktop) -->
+  <button id="menuToggle" class="md:hidden text-white text-2xl">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Navigation -->
+  <nav id="mobileNav"
+       class="absolute top-[80px] right-6 bg-[#0288d1] text-gray-800 shadow-lg rounded-lg p-4 w-56 hidden md:hidden">
+    <ul class="flex flex-col gap-3 text-sm font-medium">
+      <li><a href="#home" class="hover:underline">Home</a></li>
+      <li><a href="#about" class="hover:underline">About</a></li>
+      <li><a href="#features" class="hover:underline">Features</a></li>
+      <li><a href="#target" class="hover:underline">Target</a></li>
+      <li><a href="#faq" class="hover:underline">FAQ</a></li>
+      <li><a href="#contact" class="hover:underline">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Desktop Navigation (visible on md and above) -->
+  <nav class="hidden md:block">
+    <ul class="flex gap-6 text-sm font-medium">
+      <li><a href="#home" class="hover:underline">Home</a></li>
+      <li><a href="#about" class="hover:underline">About</a></li>
+      <li><a href="#features" class="hover:underline">Features</a></li>
+      <li><a href="#target" class="hover:underline">Target</a></li>
+      <li><a href="#faq" class="hover:underline">FAQ</a></li>
+      <li><a href="#contact" class="hover:underline">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
   <main class="flex-grow container mx-auto px-4 py-8">
     <!-- Home -->
@@ -149,6 +169,13 @@
     });
     document.getElementById("signupBtn").addEventListener("click", () => {
       window.location.href = "signup.php";
+    });
+
+    const toggleBtn = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileNav.classList.toggle('hidden');
     });
   </script>
 </body>

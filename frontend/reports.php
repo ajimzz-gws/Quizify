@@ -125,7 +125,7 @@ unset($report); // Break reference
               
               <!-- Quick Actions -->
               <div class="flex flex-wrap gap-2">
-                <a href="quiz_library.php" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium">
+                <a href="quizzes.php" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium">
                   View Quiz
                 </a>
               </div>

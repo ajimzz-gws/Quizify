@@ -186,8 +186,14 @@ footer {
   transform: scale(1.15);
 }
 
+.mobile-spacer {
+  display: none;
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
+
   header {
     flex-direction: column;
     height: auto;

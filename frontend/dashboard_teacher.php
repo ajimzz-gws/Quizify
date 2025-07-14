@@ -82,12 +82,6 @@ $teacherData = isset($teacher['teacher_data']) ? json_decode($teacher['teacher_d
         <nav>
           <ul class="space-y-3">
             <li>
-              <a href="dashboard.php" class="flex items-center space-x-2 py-2 px-3 bg-blue-600 rounded-md">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li>
               <a href="quiz_library_teacher.php" class="flex items-center space-x-2 py-2 px-3 hover:bg-blue-600 rounded-md">
                 <i class="fas fa-book"></i>
                 <span>Quiz Library</span>
