@@ -95,7 +95,7 @@ $feedback = $db->pdo->query("
                 </div>
 
                 <div class="flex justify-end space-x-4">
-                    <a href="reports.php" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</a>
+                    <a href="view_attempts.php?id=<?= $attempt['quiz_id'] ?>" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Cancel</a>
                     <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit Feedback</button>
                 </div>
             </form>
