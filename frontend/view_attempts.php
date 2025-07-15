@@ -71,7 +71,7 @@ $avgScore = $totalAttempts > 0 ?
                     <i class="fas fa-caret-down text-gray-600"></i>
                 </button>
                 <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200">
-                    <a href="profile.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                    <a href="profile_teacher.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
                     <a href="logout.php" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a>
                 </div>
             </div>
@@ -213,14 +213,14 @@ $avgScore = $totalAttempts > 0 ?
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full <?= $attempt['score'] >= 70 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' ?>">
-                                            <?= $attempt['score'] >= 70 ? 'Passed' : 'Failed' ?>
+                                            <?= $attempt['score'] >= 50 ? 'Passed' : 'Failed' ?>
                                         </span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         <?= date('M d, Y h:i A', strtotime($attempt['completed_at'])) ?>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="view_attempt.php?id=<?= $attempt['id'] ?>" class="text-blue-600 hover:text-blue-900">View</a>
+                                        <a href="feedback.php?attempt_id=<?= $attempt['id'] ?>" class="text-blue-600 hover:text-blue-900">View</a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>

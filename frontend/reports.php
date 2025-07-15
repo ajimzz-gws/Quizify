@@ -112,11 +112,13 @@ unset($report); // Break reference
                   <div class="space-y-2">
                     <?php foreach ($report['recent_attempts'] as $attempt): ?>
                       <div class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded">
-                        <span class="font-medium"><?= htmlspecialchars($attempt['username']) ?></span>
-                        <span class="text-blue-600 font-bold"><?= round($attempt['score'], 1) ?>%</span>
-                        <span class="text-sm text-gray-500">
-                          <?= date('M j, g:i a', strtotime($attempt['completed_at'])) ?>
-                        </span>
+                        <div>
+                          <span class="font-medium block"><?= htmlspecialchars($attempt['full_name']) ?></span>
+                          <span class="text-sm text-gray-500"><?= date('M j, g:i a', strtotime($attempt['completed_at'])) ?></span>
+                        </div>
+                        <div class="text-blue-600 font-bold text-right min-w-[60px]">
+                          <?= round($attempt['score'], 1) ?>%
+                        </div>
                       </div>
                     <?php endforeach; ?>
                   </div>
@@ -125,7 +127,7 @@ unset($report); // Break reference
               
               <!-- Quick Actions -->
               <div class="flex flex-wrap gap-2">
-                <a href="quizzes.php" class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium">
+                <a href="view_attempts.php?id= <?=$report['quiz_id'] ?>"   class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors text-sm font-medium">
                   View Quiz
                 </a>
               </div>
