@@ -57,6 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['duplicate_quiz']) && 
       return confirm(`Are you sure you want to duplicate "${quizTitle}"?`);
     }
   </script>
+  <style>
+    .truncate-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;       /* max 2 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      height: 3em;
+    }
+  </style>
 </head>
 <body class="bg-blue-50">
   <header class="bg-blue-700 text-white py-5 shadow-md">
@@ -93,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['duplicate_quiz']) && 
           <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-blue-600 hover:shadow-lg transition-shadow duration-200 hover:-translate-y-1">
             <div class="p-6">
               <h3 class="text-xl font-semibold text-blue-800 mb-3"><?= htmlspecialchars($quiz['title']) ?></h3>
-              <p class="text-gray-600 mb-4"><?= htmlspecialchars($quiz['description']) ?></p>
+              <p class="text-gray-600 mb-4 truncate-2"><?= htmlspecialchars($quiz['description']) ?></p>
               <p class="text-sm text-gray-500 mb-4">
                 By <?= htmlspecialchars($quiz['creator_name']) ?> • 
                 <?= $questionCount ?> question<?= $questionCount !== 1 ? 's' : '' ?>
@@ -106,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['duplicate_quiz']) && 
                     Edit
                   </a>
                   
-                  <form method="POST" onsubmit="return confirmDuplicate('<?= addslashes($quiz['title']) ?>')" class="w-full">
+                  <form method="POST" class="w-full">
                     <input type="hidden" name="quiz_id" value="<?= $quiz['id'] ?>">
                     <button type="submit" name="duplicate_quiz" 
                             class="w-full px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition-colors text-sm font-medium">

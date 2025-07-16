@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = [
         'title' => $_POST['title'],
-        'description' => $_POST['description'] ?? null,
+        'description' => $_POST['description'] ?? 'This quiz covers fundamentals of ' . ($_POST['category'] ?? 'this subject') . '.',
         'category' => $_POST['category'],
         'created_by' => $_SESSION['user_id'],
         'questions_json' => json_encode($questions),
